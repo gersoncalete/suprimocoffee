@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suprimo Coffee - Where Craft Meets Soul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #1A1614;
+            color: #E8DFD3;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Rich texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Coffee grain texture */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><defs><filter id="grain"><feTurbulence baseFrequency="0.9" numOctaves="4" /></filter></defs><rect width="200" height="200" filter="url(%23grain)" opacity="0.3"/></svg>');
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Hero Section - Artisanal Romance */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to bottom, #1A1614 0%, #221D1A 100%);
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, #2A2420 0%, transparent 100%);
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #E8DFD3;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content .accent {
+            color: #D4A574;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        .hero-subtext {
+            font-size: 1.25rem;
+            color: #B8A898;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* CTA with warmth */
+        .cta-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #8B5A2B 0%, #A0522D 100%);
+            color: #FFF8F0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(139, 90, 43, 0.3);
+            text-transform: uppercase;
+            font-family: -apple-system, sans-serif;
+            font-weight: 500;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4);
+            background: linear-gradient(135deg, #A0522D 0%, #8B5A2B 100%);
+        }
+        
+        /* Story Section - Rich & Warm */
+        .story {
+            padding: 6rem 0;
+            background: #2A2420;
+            position: relative;
+        }
+        
+        .story::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            color: #3A3430;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .story-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .story-headline {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #D4A574;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .story-text {
+            font-size: 1.25rem;
+            color: #B8A898;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Craft Section - Visual Richness */
+        .craft {
+            padding: 6rem 0;
+            background: #1F1A17;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .craft-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .craft-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #E8DFD3;
+        }
+        
+        .craft-detail {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .craft-detail::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 4px;
+            height: 4px;
+            background: #D4A574;
+            border-radius: 50%;
+        }
+        
+        .craft-detail h3 {
+            font-size: 1.25rem;
+            color: #D4A574;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .craft-detail p {
+            color: #A89888;
+            line-height: 1.6;
+        }
+        
+        .craft-visual {
+            position: relative;
+            padding: 3rem;
+            background: radial-gradient(circle at center, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+        }
+        
+        .coffee-cup {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            position: relative;
+            background: radial-gradient(ellipse at center, #3A2F2A 0%, #2A1F1A 70%);
+            border-radius: 50%;
+            box-shadow: 
+                inset 0 10px 30px rgba(0,0,0,0.5),
+                0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .coffee-cup::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: radial-gradient(ellipse at 30% 30%, #4A3F3A 0%, #2A1F1A 50%);
+            border-radius: 50%;
+        }
+        
+        .steam {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            filter: blur(10px);
+            opacity: 0.3;
+            animation: steam 3s ease-in-out infinite;
+        }
+        
+        .steam::before,
+        .steam::after {
+            content: '';
+            position: absolute;
+            background: #D4A574;
+            border-radius: 50%;
+        }
+        
+        .steam::before {
+            width: 20px;
+            height: 30px;
+            left: 10px;
+            animation: rise 3s ease-in-out infinite;
+        }
+        
+        .steam::after {
+            width: 15px;
+            height: 25px;
+            right: 10px;
+            animation: rise 3s ease-in-out infinite 0.5s;
+        }
+        
+        @keyframes steam {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+        }
+        
+        /* Experience Section */
+        .experience {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, #2A2420 0%, #1A1614 100%);
+            text-align: center;
+        }
+        
+        .experience h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #E8DFD3;
+            margin-bottom: 3rem;
+        }
+        
+        .ritual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .ritual-item {
+            text-align: center;
+        }
+        
+        .ritual-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: radial-gradient(circle at 30% 30%, #3A2F2A 0%, #2A1F1A 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #D4A574;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .ritual-item h3 {
+            font-size: 1.25rem;
+            color: #D4A574;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .ritual-item p {
+            color: #A89888;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Testimonial - Artisan Voice */
+        .voice {
+            padding: 6rem 0;
+            background: #1F1A17;
+            position: relative;
+        }
+        
+        .voice-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .voice-quote {
+            font-size: 1.75rem;
+            font-style: italic;
+            color: #E8DFD3;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .voice-quote::before,
+        .voice-quote::after {
+            content: '"';
+            position: absolute;
+            font-size: 3rem;
+            color: #3A3430;
+            font-family: Georgia, serif;
+        }
+        
+        .voice-quote::before {
+            top: -1rem;
+            left: -2rem;
+        }
+        
+        .voice-quote::after {
+            bottom: -2rem;
+            right: -2rem;
+            transform: rotate(180deg);
+        }
+        
+        .voice-author {
+            font-size: 1.125rem;
+            color: #D4A574;
+        }
+        
+        .voice-title {
+            font-size: 0.95rem;
+            color: #8A7868;
+            margin-top: 0.5rem;
+        }
+        
+        /* Final Conversion */
+        .conversion {
+            padding: 8rem 0 6rem;
+            text-align: center;
+            background: linear-gradient(to bottom, #1A1614 0%, #0F0C0A 100%);
+        }
+        
+        .conversion h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #E8DFD3;
+        }
+        
+        .conversion-subtext {
+            font-size: 1.25rem;
+            color: #B8A898;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+        
+        .availability-note {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #8A7868;
+            font-style: italic;
+        }
+        
+        /* Logo with character */
+        .logo {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #D4A574;
+            letter-spacing: 0.15em;
+            z-index: 10;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+        }
+        
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .craft-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .ritual-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .craft-visual {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <div class="logo">SUPRIMO</div>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Every Cup Tells a Story of <span class="accent">Obsession</span></h1>
+                <p class="hero-subtext">Hand-roasted in small batches by people who believe coffee is poetry, not commodity</p>
+                <a href="#discover" class="cta-primary">Discover Your Blend</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="story">
+        <div class="container">
+            <div class="story-content">
+                <h2 class="story-headline">Born from late nights and early mornings</h2>
+                <p class="story-text">
+                    In a small Woodstock roastery, we're crafting something different. Not mass-produced. 
+                    Not following trends. Just pure, uncompromising coffee for those who understand that 
+                    the perfect cup is worth the obsession.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="craft">
+        <div class="container">
+            <div class="craft-grid">
+                <div class="craft-content">
+                    <h2>The Art of Slow Perfection</h2>
+                    <div class="craft-detail">
+                        <h3>Single-Origin Obsession</h3>
+                        <p>Each bean traced to its exact farm, elevation, and harvest date. Because terroir matters.</p>
+                    </div>
+                    <div class="craft-detail">
+                        <h3>72-Hour Process</h3>
+                        <p>From green bean to perfect roast, we take three days to do what machines do in three hours.</p>
+                    </div>
+                    <div class="craft-detail">
+                        <h3>The 14-Day Sweet Spot</h3>
+                        <p>Delivered exactly when the flavors peak. Not before. Never after.</p>
+                    </div>
+                </div>
+                <div class="craft-visual">
+                    <div class="coffee-cup">
+                        <div class="steam"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="experience">
+        <div class="container">
+            <h2>Your Daily Ritual, Reimagined</h2>
+            <div class="ritual-grid">
+                <div class="ritual-item">
+                    <div class="ritual-icon">☼</div>
+                    <h3>Morning Glory</h3>
+                    <p>That first sip that makes 5 AM feel like a blessing, not a burden</p>
+                </div>
+                <div class="ritual-item">
+                    <div class="ritual-icon">◐</div>
+                    <h3>Afternoon Revival</h3>
+                    <p>When the world slows down, your mind speeds up</p>
+                </div>
+                <div class="ritual-item">
+                    <div class="ritual-icon">☾</div>
+                    <h3>Midnight Oil</h3>
+                    <p>For creators who know their best work happens after dark</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="voice">
+        <div class="container">
+            <div class="voice-content">
+                <p class="voice-quote">
+                    Suprimo ruined other coffee for me. Now I plan my mornings around it. 
+                    It's not just fuel—it's the difference between existing and creating.
+                </p>
+                <p class="voice-author">Thandi Mthembu</p>
+                <p class="voice-title">Ceramic Artist, Observatory</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="conversion" id="discover">
+        <div class="container">
+            <h2>Ready for Coffee That Changes Everything?</h2>
+            <p class="conversion-subtext">Join a small community of coffee obsessives</p>
+            <a href="#" class="cta-primary">Begin Your Journey</a>
+            <p class="availability-note">Roasted weekly. Limited quantities. Worth the wait.</p>
+        </div>
+    </section>
+</body>
+</html>

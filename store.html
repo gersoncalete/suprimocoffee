@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1F1A17">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Redirecting... - Suprimo Coffee Store</title>
+    <script>
+        // Redirect to unified SPA with store view
+        window.location.replace('./app.html#store');
+    </script>
+    <meta name="description" content="Shop premium artisanal coffee. The Goat Blend & Majestic - hand-roasted in small batches, delivered at peak freshness.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+    
+    <style>
+        :root {
+            /* Color System */
+            --color-espresso: #1F1A17;
+            --color-golden-crema: #D4A574;
+            --color-oat-milk: #E8DFD3;
+            --color-foam: #B8A898;
+            --color-cappuccino: #A89888;
+            --color-steamed-milk: #FFF8F0;
+            --gradient-button: linear-gradient(135deg, #8B5A2B 0%, #A0522D 100%);
+            --gradient-button-hover: linear-gradient(135deg, #A0522D 0%, #8B5A2B 100%);
+            --shadow-subtle: 0 4px 15px rgba(139, 90, 43, 0.3);
+            --shadow-lifted: 0 6px 20px rgba(139, 90, 43, 0.4);
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Pro', 'Georgia', serif;
+            
+            /* Consistent Spacing System */
+            --space-xs: 0.5rem;     /* 8px */
+            --space-sm: 1rem;       /* 16px */
+            --space-md: 1.5rem;     /* 24px */
+            --space-lg: 2rem;       /* 32px */
+            --space-xl: 3rem;       /* 48px */
+            --space-2xl: 4rem;      /* 64px */
+            --space-3xl: 6rem;      /* 96px */
+            --space-4xl: 8rem;      /* 128px */
+            --space-5xl: 10rem;     /* 160px */
+            
+            /* Section Spacing */
+            --section-padding-mobile: var(--space-2xl);
+            --section-padding-tablet: var(--space-3xl);
+            --section-padding-desktop: var(--space-4xl);
+            
+            /* Content Width System */
+            --content-width-sm: 600px;
+            --content-width-md: 800px;
+            --content-width-lg: 1000px;
+            --content-width-xl: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            background: var(--color-espresso);
+            color: var(--color-oat-milk);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Rich texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Coffee grain texture */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><defs><filter id="grain"><feTurbulence baseFrequency="0.9" numOctaves="4" /></filter></defs><rect width="200" height="200" filter="url(%23grain)" opacity="0.3"/></svg>');
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        /* Skip to main content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Focus styles */
+        button:focus,
+        a:focus,
+        input:focus,
+        select:focus {
+            outline: 2px solid var(--color-golden-crema);
+            outline-offset: 2px;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 3;
+            max-width: var(--content-width-lg);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .container-sm {
+            max-width: var(--content-width-sm);
+        }
+        
+        .container-md {
+            max-width: var(--content-width-md);
+        }
+        
+        .container-xl {
+            max-width: var(--content-width-xl);
+        }
+        
+        /* Logo */
+        .logo {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-3xl);
+            z-index: 1001;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--color-golden-crema);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            mix-blend-mode: normal;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            will-change: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Primary Navigation */
+        .primary-nav {
+            position: fixed;
+            top: var(--space-lg);
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: 1001;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(31, 26, 23, 0.9);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            color: var(--color-foam);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: var(--font-sans);
+            border-radius: 25px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: rgba(212, 165, 116, 0.4);
+            color: var(--color-golden-crema);
+            -webkit-transform: translateY(-1px);
+            -moz-transform: translateY(-1px);
+            -ms-transform: translateY(-1px);
+            transform: translateY(-1px);
+            will-change: transform;
+        }
+        
+        .nav-btn.active {
+            background: var(--gradient-button);
+            border-color: var(--color-golden-crema);
+            color: var(--color-steamed-milk);
+        }
+
+        /* Contact Integration - On Brand */
+        .contact-float {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-button);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 2px solid rgba(212, 165, 116, 0.2);
+        }
+        
+        .contact-float:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lifted);
+            background: var(--gradient-button-hover);
+            border-color: rgba(212, 165, 116, 0.4);
+        }
+        
+        .contact-float svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--color-steamed-milk);
+        }
+        
+        /* Store Hero */
+        .store-hero {
+            padding: var(--space-4xl) 0 var(--space-xl);
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 20%, rgba(139, 90, 43, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(42, 31, 26, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 60%, rgba(34, 29, 26, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #1A1614 0%, #221D1A 50%, #1F1A17 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .store-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(139, 90, 43, 0.03) 0%, transparent 60%);
+            /* heroParallax animation removed for performance */
+            pointer-events: none;
+        }
+        
+        /* heroParallax keyframes removed */
+        
+        .store-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            line-height: 0.95;
+            margin-bottom: var(--space-xl);
+            color: var(--color-oat-milk);
+            text-shadow: 
+                0 0 30px rgba(212, 165, 116, 0.3),
+                2px 4px 8px rgba(0,0,0,0.4),
+                0 0 60px rgba(139, 90, 43, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .store-hero p {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: var(--color-foam);
+            margin-bottom: var(--space-2xl);
+            font-weight: 300;
+            font-style: italic;
+            max-width: var(--content-width-md);
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Product Search & Filter */
+        .product-controls {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-container {
+            position: relative;
+            min-width: 300px;
+        }
+        
+        .product-search {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 25px;
+            color: var(--color-oat-milk);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .product-search::placeholder {
+            color: var(--color-cappuccino);
+        }
+        
+        .product-search:focus {
+            outline: none;
+            border-color: var(--color-golden-crema);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--color-cappuccino);
+            pointer-events: none;
+        }
+        
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .product-filter {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 4px;
+            color: var(--color-oat-milk);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .product-filter:focus {
+            outline: none;
+            border-color: var(--color-golden-crema);
+        }
+        
+        .product-filter option {
+            background: var(--color-espresso);
+            color: var(--color-oat-milk);
+        }
+        
+        .clear-filters {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--color-golden-crema);
+            color: var(--color-golden-crema);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-filters:hover {
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+        }
+        
+        /* Products Grid */
+        .products-section {
+            padding: 2rem 0 4rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 165, 116, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-visual {
+            width: 100%;
+            height: 280px;
+            margin: 0 auto 1.5rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: var(--font-sans);
+        }
+        
+        .product-name {
+            font-size: 1.5rem;
+            color: var(--color-oat-milk);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        
+        .product-profile {
+            font-size: 0.95rem;
+            color: var(--color-foam);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--color-cappuccino);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            font-size: 1.4rem;
+            color: var(--color-golden-crema);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .product-price .was {
+            text-decoration: line-through;
+            color: var(--color-cappuccino);
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            min-height: 48px; /* Touch-friendly minimum */
+            background: var(--gradient-button);
+            color: var(--color-steamed-milk);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: var(--font-sans);
+            /* Mobile optimizations */
+            -webkit-tap-highlight-color: rgba(139, 90, 43, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--gradient-button-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lifted);
+        }
+        
+        .add-to-cart-btn:active {
+            transform: translateY(0) scale(0.98);
+            transition: all 0.1s ease;
+        }
+        
+        .wishlist-btn {
+            background: none;
+            border: 1px solid var(--color-golden-crema);
+            color: var(--color-golden-crema);
+            width: 50px;
+            height: 50px;
+            min-width: 48px; /* Touch-friendly minimum */
+            min-height: 48px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Mobile optimizations */
+            -webkit-tap-highlight-color: rgba(212, 165, 116, 0.3);
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .wishlist-btn:hover,
+        .wishlist-btn.active {
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+        }
+        
+        .product-reviews {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .stars {
+            color: var(--color-golden-crema);
+        }
+        
+        .review-count {
+            color: var(--color-cappuccino);
+        }
+        
+        /* Page transitions removed for instant navigation */
+        
+        /* Performance Optimizations */
+        .primary-nav,
+        .logo,
+        .contact-float {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+        
+        
+        /* Mobile Optimization */
+        /* Mobile Performance Optimizations */
+        @media (max-width: 768px) {
+            /* Reduce animations for better mobile performance */
+            *, *::before, *::after {
+                animation-duration: 0.3s !important;
+                transition-duration: 0.3s !important;
+            }
+            
+            /* Disable complex animations on mobile */
+            @media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-sm);
+            }
+            
+            .logo {
+                top: var(--space-sm);
+                left: var(--space-sm);
+                font-size: 1rem;
+                z-index: 1002;
+            }
+            
+            .primary-nav {
+                top: var(--space-sm);
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
+            
+            .nav-btn {
+                padding: var(--space-xs) var(--space-sm);
+                font-size: 0.8rem;
+                min-height: 44px; /* Touch-friendly */
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                -webkit-tap-highlight-color: rgba(212, 165, 116, 0.3);
+                touch-action: manipulation;
+            }
+            
+            .contact-float {
+                bottom: var(--space-sm);
+                right: var(--space-sm);
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                min-height: 48px;
+                -webkit-tap-highlight-color: rgba(212, 165, 116, 0.3);
+                touch-action: manipulation;
+            }
+            
+            .contact-float svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .product-controls {
+                flex-direction: column;
+                gap: var(--space-md);
+                padding: 0 var(--space-sm);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .search-container {
+                min-width: 100%;
+                width: 100%;
+            }
+            
+            .product-search {
+                min-height: 48px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: var(--space-sm);
+                border-radius: 8px;
+                width: 100%;
+            }
+            
+            .filter-container {
+                width: 100%;
+                justify-content: space-between;
+                gap: var(--space-xs);
+                flex-wrap: wrap;
+            }
+            
+            .product-filter {
+                flex: 1;
+                min-height: 48px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: var(--space-sm);
+                border-radius: 8px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+            }
+            
+            .clear-filters {
+                min-height: 48px;
+                min-width: 48px;
+                padding: var(--space-sm) var(--space-md);
+                border-radius: 8px;
+                -webkit-tap-highlight-color: rgba(212, 165, 116, 0.3);
+                touch-action: manipulation;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+                padding: 0 var(--space-sm);
+            }
+            
+            /* Enhanced mobile product cards */
+            .product-card {
+                padding: var(--space-lg);
+                border-radius: 12px;
+                margin-bottom: var(--space-lg);
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            .product-image {
+                border-radius: 8px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+                object-fit: cover;
+                margin-bottom: var(--space-md);
+            }
+            
+            .product-title {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                margin-bottom: var(--space-sm);
+                line-height: 1.3;
+            }
+            
+            .product-description {
+                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+                line-height: 1.6;
+                margin-bottom: var(--space-md);
+            }
+            
+            .product-price {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: var(--space-md);
+            }
+            
+            /* Enhanced mobile product actions */
+            .product-actions {
+                flex-direction: column;
+                gap: var(--space-md);
+                margin-bottom: var(--space-lg);
+            }
+            
+            .add-to-cart-btn {
+                width: 100%;
+                min-height: 52px;
+                font-size: 1rem;
+                font-weight: 600;
+                border-radius: 10px;
+                letter-spacing: 0.05em;
+            }
+            
+            .wishlist-btn {
+                width: 100%;
+                height: 48px;
+                min-height: 48px;
+                border-radius: 10px;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Enhanced mobile Shopify buttons for store */
+            .shopify-btn {
+                min-height: 48px;
+                min-width: 160px;
+                padding: var(--space-md) var(--space-xl);
+                font-size: 1rem;
+                font-weight: 600;
+                border-radius: 10px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                letter-spacing: 0.05em;
+                -webkit-tap-highlight-color: rgba(139, 90, 43, 0.3);
+                touch-action: manipulation;
+                width: 100%;
+                margin-top: var(--space-sm);
+            }
+            
+        }
+        
+        /* Enhanced Mobile Breakpoints for Better Cross-Device Support */
+        
+        /* Small mobile devices (iPhone SE, etc.) */
+        @media (max-width: 375px) {
+            :root {
+                --space-sm: 0.75rem;
+                --space-md: 1rem;
+                --space-lg: 1.25rem;
+            }
+            
+            .logo {
+                font-size: 0.9rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+                min-width: 40px;
+                min-height: 40px;
+            }
+            
+            .product-card {
+                padding: var(--space-md);
+            }
+            
+            .shopify-btn {
+                padding: var(--space-sm) var(--space-md);
+                font-size: 0.9rem;
+                min-width: 140px;
+            }
+        }
+        
+        /* Large mobile devices (iPhone Pro Max, etc.) */
+        @media (min-width: 415px) and (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--space-lg);
+            }
+            
+            .product-card {
+                padding: var(--space-xl);
+            }
+            
+            .shopify-btn {
+                padding: var(--space-lg) var(--space-xl);
+                font-size: 1.1rem;
+            }
+            
+            .primary-nav {
+                gap: 0.75rem;
+            }
+            
+            .nav-btn {
+                padding: var(--space-sm) var(--space-md);
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Tablet Optimization for Store */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 var(--space-lg);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--space-xl);
+            }
+            
+            .product-controls {
+                flex-direction: row;
+                gap: var(--space-lg);
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                flex: 2;
+                min-width: 250px;
+            }
+            
+            .filter-container {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .primary-nav,
+            .cart-icon,
+            .contact-float,
+            .texture-overlay {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Logo -->
+    <div class="logo">SUPRIMO</div>
+    
+    <!-- Primary Navigation -->
+    <nav class="primary-nav">
+        <a href="index.html" class="nav-btn" aria-label="Home page">Home</a>
+        <a href="store.html" class="nav-btn active" aria-label="Store page">Store</a>
+    </nav>
+    
+    
+    <main id="main">
+        <section class="store-hero">
+            <div class="container">
+                <h1>Premium Coffee Store</h1>
+                <p>Hand-roasted artisanal blends delivered at peak freshness. Every bag tells a story of obsession and craft.</p>
+            </div>
+        </section>
+        
+        <section class="products-section">
+            <div class="container">
+                <!-- Product Search & Filter -->
+                <div class="product-controls">
+                    <div class="search-container">
+                        <input type="text" id="product-search" class="product-search" placeholder="Search coffee blends...">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <select id="size-filter" class="product-filter">
+                            <option value="all">All Sizes</option>
+                            <option value="1kg">1KG</option>
+                            <option value="250g">250g</option>
+                        </select>
+                        
+                        <select id="price-filter" class="product-filter">
+                            <option value="all">All Prices</option>
+                            <option value="low">Under R100</option>
+                            <option value="mid">R100 - R300</option>
+                        </select>
+                        
+                        <button id="clear-filters" class="clear-filters">Clear</button>
+                    </div>
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-visual">
+                            <div class="product-badge">21% OFF</div>
+                            <img src="reference images/The-Goat-1.jpeg" alt="The Goat Blend 1KG" class="product-image">
+                        </div>
+                        <h3 class="product-name">The Goat Blend</h3>
+                        <p class="product-profile">Full Body • Honey • Fruity • Medium Roast<br><em>1KG Premium Roast</em></p>
+                        <p class="product-description">Our signature blend sourced from Ethiopian highlands. Notes of honey sweetness with bright fruity undertones that dance on your palate.</p>
+                        <div class="product-price">
+                            <span class="was">R350.00</span>
+                            R275.00
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-btn" data-product="the-goat-1kg">Add to Cart</button>
+                            <button class="wishlist-btn" data-product="the-goat-1kg" aria-label="Add to wishlist">♡</button>
+                        </div>
+                        <div class="product-reviews">
+                            <div class="stars">★★★★★</div>
+                            <span class="review-count">(127 reviews)</span>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card">
+                        <div class="product-visual">
+                            <img src="reference images/majestic-1.jpeg" alt="Majestic Blend 1KG" class="product-image">
+                        </div>
+                        <h3 class="product-name">Majestic Blend</h3>
+                        <p class="product-profile">Low Acidity • Full Bodied • Dark Chocolate After Taste<br><em>1KG Premium Roast</em></p>
+                        <p class="product-description">Rich Brazilian and Colombian blend with deep chocolate notes. Perfect for those who prefer bold, smooth coffee with minimal acidity.</p>
+                        <div class="product-price">R275.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-btn" data-product="majestic-1kg">Add to Cart</button>
+                            <button class="wishlist-btn" data-product="majestic-1kg" aria-label="Add to wishlist">♡</button>
+                        </div>
+                        <div class="product-reviews">
+                            <div class="stars">★★★★★</div>
+                            <span class="review-count">(89 reviews)</span>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card">
+                        <div class="product-visual">
+                            <img src="reference images/goat-250.jpeg" alt="The Goat 250g" class="product-image">
+                        </div>
+                        <h3 class="product-name">The Goat - Taster Pack</h3>
+                        <p class="product-profile">Full Body • Honey • Fruity • Medium Roast<br><em>250g Taster Pack</em></p>
+                        <p class="product-description">Perfect size to discover your new favorite. Same exceptional quality as our 1KG blend in a convenient taster pack size.</p>
+                        <div class="product-price">R85.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-btn" data-product="the-goat-250g">Add to Cart</button>
+                            <button class="wishlist-btn" data-product="the-goat-250g" aria-label="Add to wishlist">♡</button>
+                        </div>
+                        <div class="product-reviews">
+                            <div class="stars">★★★★★</div>
+                            <span class="review-count">(67 reviews)</span>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card">
+                        <div class="product-visual">
+                            <img src="reference images/MAGESTIC-250.jpeg" alt="Majestic 250g" class="product-image">
+                        </div>
+                        <h3 class="product-name">Majestic - Taster Pack</h3>
+                        <p class="product-profile">Low Acidity • Full Bodied • Dark Chocolate After Taste<br><em>250g Taster Pack</em></p>
+                        <p class="product-description">Experience the rich complexity of our Majestic blend in this perfect taster size. Ideal for trying before committing to the full bag.</p>
+                        <div class="product-price">R85.00</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart-btn" data-product="majestic-250g">Add to Cart</button>
+                            <button class="wishlist-btn" data-product="majestic-250g" aria-label="Add to wishlist">♡</button>
+                        </div>
+                        <div class="product-reviews">
+                            <div class="stars">★★★★★</div>
+                            <span class="review-count">(45 reviews)</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Contact Float -->
+    <a href="https://wa.me/27123456789?text=Hi! I'm interested in Suprimo Coffee" 
+       class="contact-float" 
+       aria-label="Contact us via WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </a>
+    
+    <script>
+        // Shopping cart and product functionality
+        let cart = JSON.parse(localStorage.getItem('suprimo-cart')) || [];
+        
+        const products = {
+            'the-goat-1kg': {
+                name: 'The Goat Blend',
+                price: 275,
+                originalPrice: 350,
+                image: 'reference images/The-Goat-1.jpeg',
+                size: '1KG'
+            },
+            'majestic-1kg': {
+                name: 'Majestic Blend',
+                price: 275,
+                image: 'reference images/majestic-1.jpeg',
+                size: '1KG'
+            },
+            'the-goat-250g': {
+                name: 'The Goat',
+                price: 85,
+                image: 'reference images/goat-250.jpeg',
+                size: '250g'
+            },
+            'majestic-250g': {
+                name: 'Majestic',
+                price: 85,
+                image: 'reference images/MAGESTIC-250.jpeg',
+                size: '250g'
+            }
+        };
+        
+        
+        function addToCart(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    size: product.size,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('suprimo-cart', JSON.stringify(cart));
+            
+            // Update cart badge if the function exists
+            if (window.updateCartBadge) {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                window.updateCartBadge(totalItems);
+            }
+            
+            // Visual feedback
+            const button = document.querySelector(`[data-product="${productId}"]`);
+            const originalText = button.textContent;
+            button.textContent = 'Added!';
+            button.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 1500);
+        }
+        
+        // Event listeners
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.add-to-cart-btn')) {
+                const productId = e.target.getAttribute('data-product');
+                addToCart(productId);
+            }
+            
+            if (e.target.matches('.wishlist-btn')) {
+                e.target.classList.toggle('active');
+                const isActive = e.target.classList.contains('active');
+                e.target.textContent = isActive ? '♥' : '♡';
+            }
+        });
+        
+        
+        // Search and filter functionality
+        const productSearch = document.getElementById('product-search');
+        const sizeFilter = document.getElementById('size-filter');
+        const priceFilter = document.getElementById('price-filter');
+        const clearFilters = document.getElementById('clear-filters');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        function filterProducts() {
+            const searchTerm = productSearch.value.toLowerCase();
+            const sizeValue = sizeFilter.value;
+            const priceValue = priceFilter.value;
+            
+            productCards.forEach(card => {
+                const productName = card.querySelector('.product-name').textContent.toLowerCase();
+                const productProfile = card.querySelector('.product-profile').textContent.toLowerCase();
+                const productSize = card.querySelector('.product-profile em').textContent.toLowerCase();
+                const priceText = card.querySelector('.product-price').textContent;
+                const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                
+                const matchesSearch = searchTerm === '' || 
+                    productName.includes(searchTerm) || 
+                    productProfile.includes(searchTerm);
+                
+                const matchesSize = sizeValue === 'all' || 
+                    (sizeValue === '1kg' && productSize.includes('1kg')) ||
+                    (sizeValue === '250g' && productSize.includes('250g'));
+                
+                const matchesPrice = priceValue === 'all' ||
+                    (priceValue === 'low' && price < 100) ||
+                    (priceValue === 'mid' && price >= 100 && price <= 300);
+                
+                const shouldShow = matchesSearch && matchesSize && matchesPrice;
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+        
+        productSearch.addEventListener('input', filterProducts);
+        sizeFilter.addEventListener('change', filterProducts);
+        priceFilter.addEventListener('change', filterProducts);
+        
+        clearFilters.addEventListener('click', () => {
+            productSearch.value = '';
+            sizeFilter.value = 'all';
+            priceFilter.value = 'all';
+            filterProducts();
+        });
+        
+        
+        // Page Preloading for Seamless Navigation
+        function preloadPage(url) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = url;
+            document.head.appendChild(link);
+        }
+        
+        // Preload home page on navigation hover
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.matches('.nav-btn[href="index.html"]')) {
+                preloadPage('index.html');
+            }
+        }, true);
+        
+        // Instant page navigation - no delays
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.nav-btn') && e.target.href) {
+                e.preventDefault();
+                // Navigate immediately without transition
+                window.location.href = e.target.href;
+            }
+        });
+    </script>
+</body>
+</html>

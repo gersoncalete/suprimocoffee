@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2A1F17">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title id="dynamic-title">Suprimo Coffee - Where Craft Meets Soul</title>
+    <meta name="description" id="dynamic-description" content="Premium artisanal coffee hand-roasted in small batches. The Goat Blend & Majestic - delivered at peak freshness.">
+    <meta property="og:title" content="Suprimo Coffee - Premium Artisanal Coffee">
+    <meta property="og:description" content="Hand-roasted in small batches by people who believe coffee is poetry, not commodity.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+    <script src="shopify-integration.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23D4A574'/></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Color System - Original Design */
+            --color-espresso: #1A1614;
+            --color-golden-crema: #D4A574;
+            --color-oat-milk: #E8DFD3;
+            --color-foam: #B8A898;
+            --color-cappuccino: #A89888;
+            --color-steamed-milk: #FFF8F0;
+            --color-secondary-bg: #2A2420;
+            --color-tertiary-bg: #1F1A17;
+            --gradient-button: linear-gradient(135deg, #8B5A2B 0%, #A0522D 100%);
+            --gradient-button-hover: linear-gradient(135deg, #A0522D 0%, #8B5A2B 100%);
+            --shadow-subtle: 0 4px 15px rgba(139, 90, 43, 0.3);
+            --shadow-lifted: 0 6px 20px rgba(139, 90, 43, 0.4);
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Pro', 'Georgia', serif;
+            
+            /* Consistent Spacing System */
+            --space-xs: 0.5rem;     /* 8px */
+            --space-sm: 1rem;       /* 16px */
+            --space-md: 1.5rem;     /* 24px */
+            --space-lg: 2rem;       /* 32px */
+            --space-xl: 3rem;       /* 48px */
+            --space-2xl: 4rem;      /* 64px */
+            --space-3xl: 6rem;      /* 96px */
+            --space-4xl: 8rem;      /* 128px */
+            --space-5xl: 10rem;     /* 160px */
+            
+            /* Section Spacing */
+            --section-padding-mobile: var(--space-2xl);
+            --section-padding-tablet: var(--space-3xl);
+            --section-padding-desktop: var(--space-4xl);
+            
+            /* Content Width System */
+            --content-width-sm: 600px;
+            --content-width-md: 800px;
+            --content-width-lg: 1000px;
+            --content-width-xl: 1200px;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #1A1614;
+            color: var(--color-oat-milk);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+        
+        /* Rich texture overlay */
+        
+        
+        /* Skip to main content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Logo */
+        .logo {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-family: -apple-system, sans-serif;
+            font-weight: 400;
+            font-size: 1.25rem;
+            color: var(--color-golden-crema);
+            text-decoration: none;
+            z-index: 1000;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .logo:hover {
+            color: var(--color-oat-milk);
+            transform: scale(1.05);
+        }
+
+        /* Subtle Integrated Navigation */
+        .primary-nav {
+            position: fixed;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            z-index: 1000;
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .nav-btn {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--color-foam);
+            text-decoration: none;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-golden-crema);
+            transition: width 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--color-oat-milk);
+        }
+
+        .nav-btn:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn.active {
+            color: var(--color-golden-crema);
+        }
+
+        .nav-btn.active::after {
+            width: 100%;
+        }
+
+
+        /* Navigation loading state */
+        .nav-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+
+        @keyframes navLoading {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* SPA View System with Enhanced Transitions */
+        .app-container {
+            position: relative;
+            z-index: 3;
+            min-height: 100vh;
+        }
+
+        .view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            filter: blur(2px);
+            overflow-y: auto;
+        }
+
+        .view.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+            filter: blur(0);
+        }
+
+        .view.exiting {
+            opacity: 0;
+            transform: translateX(-30px) scale(1.02);
+            transition: all 0.4s cubic-bezier(0.55, 0, 0.1, 1);
+            filter: blur(1px);
+        }
+
+        /* Page transition loading indicator */
+        .page-transition-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-golden-crema), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 2000;
+            opacity: 0;
+        }
+
+        .page-transition-indicator.active {
+            opacity: 1;
+            animation: progressSlide 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes progressSlide {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(0%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--content-width-xl);
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: var(--section-padding-mobile) 0;
+        }
+
+        .hero-content h1 {
+            font-family: 'Georgia', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .hero-content .accent {
+            color: var(--color-golden-crema);
+            font-style: italic;
+        }
+
+        .hero-subtext {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--color-foam);
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--gradient-button);
+            color: var(--color-steamed-milk);
+            padding: var(--space-sm) var(--space-xl);
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: -apple-system, sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-primary:hover {
+            background: var(--gradient-button-hover);
+            box-shadow: var(--shadow-lifted);
+            transform: translateY(-2px);
+        }
+
+
+        /* Featured Products Section */
+        /* Story Section */
+        .story {
+            padding: 6rem 0;
+            background: #1A1614;
+            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .story::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            color: #3A3430;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .story-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .story-headline {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #D4A574;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .story-text {
+            font-size: 1.25rem;
+            color: #B8A898;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Craft Section */
+        .craft {
+            padding: 6rem 0;
+            background: #1A1614;
+            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .craft-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .craft-text h3 {
+            font-size: 1.75rem;
+            color: #D4A574;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .craft-text p {
+            color: #B8A898;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .craft-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #D4A574;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #B8A898;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .featured-products {
+            padding: var(--section-padding-desktop) 0;
+            background: #1A1614;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .featured-intro p {
+            color: #B8A898;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .featured-intro {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .featured-intro h2 {
+            font-family: 'Georgia', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 400;
+            color: var(--color-golden-crema);
+            margin-bottom: var(--space-md);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-3xl);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .product-card {
+            background: rgba(184, 168, 152, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            border-radius: 8px;
+            padding: var(--space-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px rgba(139, 90, 43, 0.3);
+            border-color: rgba(212, 165, 116, 0.6);
+        }
+
+        .product-card:active {
+            transform: translateY(-2px);
+            transition: transform 0.1s;
+        }
+
+        /* Touch feedback for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .product-card:active {
+                background: rgba(212, 165, 116, 0.1);
+                transform: scale(0.98);
+            }
+        }
+
+        .product-card h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--color-golden-crema);
+            margin-bottom: var(--space-sm);
+        }
+
+        .product-card .description {
+            color: var(--color-foam);
+            margin-bottom: var(--space-lg);
+            line-height: 1.6;
+        }
+
+        .product-card .price {
+            font-family: -apple-system, sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-golden-crema);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Enhanced Product Card Structure */
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            margin-bottom: var(--space-lg);
+            overflow: hidden;
+            border-radius: 8px;
+            background: rgba(184, 168, 152, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            text-align: center;
+        }
+
+        .product-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--color-golden-crema);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .product-description {
+            color: var(--color-foam);
+            line-height: 1.6;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-family: -apple-system, sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-golden-crema);
+            margin: var(--space-sm) 0;
+        }
+
+        /* Store Hero Section */
+        .store-hero {
+            padding: calc(var(--space-4xl) + 60px) 0 var(--space-2xl);
+            text-align: center;
+            background: linear-gradient(135deg, #1A1614 0%, #221D1A 50%, #1F1A17 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(139, 90, 43, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .store-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .store-hero h1 {
+            font-family: 'Georgia', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+            color: var(--color-golden-crema);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .store-hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: var(--color-foam);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: var(--space-xl) 0 var(--section-padding-desktop);
+        }
+        
+        /* Ensure all mobile elements stay within viewport */
+        @media (max-width: 768px) {
+            .products-section {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100vw;
+            }
+        }
+
+        .product-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+            gap: var(--space-lg);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--space-sm);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--color-foam);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .product-search {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md) var(--space-sm) calc(var(--space-md) + 28px);
+            background: rgba(184, 168, 152, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 8px;
+            color: var(--color-oat-milk);
+            font-family: -apple-system, sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-search::placeholder {
+            color: var(--color-foam);
+        }
+
+        .product-search:focus {
+            outline: none;
+            border-color: var(--color-golden-crema);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+        }
+
+        .sort-dropdown {
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(184, 168, 152, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 8px;
+            color: var(--color-oat-milk);
+            font-family: -apple-system, sans-serif;
+            cursor: pointer;
+        }
+
+        /* Cart */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-panel {
+            background: var(--color-espresso);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 12px;
+            padding: var(--space-xl);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+            padding-bottom: var(--space-md);
+        }
+
+        .cart-header h2 {
+            color: var(--color-golden-crema);
+            font-family: var(--font-serif);
+            margin: 0;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--color-foam);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-cart:hover {
+            background: rgba(212, 165, 116, 0.2);
+            color: var(--color-golden-crema);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-count {
+            color: var(--color-golden-crema);
+            font-weight: 600;
+        }
+
+        /* Cart Items Styling */
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: var(--space-lg);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            margin-left: var(--space-md);
+        }
+
+        .cart-item-details h4 {
+            color: var(--color-golden-crema);
+            margin-bottom: var(--space-xs);
+            font-family: var(--font-serif);
+        }
+
+        .cart-item-price {
+            color: var(--color-foam);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .quantity-btn {
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid var(--color-golden-crema);
+            color: var(--color-golden-crema);
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover:not(:disabled) {
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+        }
+
+        .quantity-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .cart-item-quantity input {
+            width: 50px;
+            text-align: center;
+            background: transparent;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            color: var(--color-oat-milk);
+            padding: 4px;
+            border-radius: 4px;
+            font-family: var(--font-sans);
+        }
+
+        .cart-item-total {
+            text-align: right;
+            margin-left: var(--space-md);
+        }
+
+        .item-total {
+            color: var(--color-golden-crema);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--color-foam);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .remove-item:hover {
+            color: #ff6b6b;
+        }
+
+        /* Cart Footer */
+        .cart-footer {
+            border-top: 2px solid rgba(212, 165, 116, 0.3);
+            padding-top: var(--space-lg);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-golden-crema);
+            margin-bottom: var(--space-lg);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: var(--space-md);
+            background: var(--gradient-button);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+
+        .checkout-btn:hover {
+            background: var(--gradient-button-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lifted);
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            color: var(--color-foam);
+            padding: var(--space-2xl);
+            font-style: italic;
+        }
+
+        .cart-overlay.active .cart-panel {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Global overflow prevention */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body, .app-container, .view, .container {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+        }
+        
+        /* Mobile App-like Experience */
+        @media (max-width: 768px) {
+            * {
+                max-width: 100vw;
+                box-sizing: border-box;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            html, body {
+                width: 100vw;
+                max-width: 100vw;
+                overflow-x: hidden !important;
+                position: relative;
+            }
+            
+            .app-container, .view {
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            
+            /* Fix text content overflow */
+            .hero-content h1,
+            .hero-subtext,
+            .story-text,
+            .craft-text p {
+                max-width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            /* Ensure all text containers stay within viewport */
+            .hero-content,
+            .story-content,
+            .craft-text {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+            
+            /* Mobile header with solid background */
+            .logo {
+                top: calc(env(safe-area-inset-top, 0px) + var(--space-md));
+                left: var(--space-md);
+                font-size: 1.1rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                line-height: 1;
+                background: var(--color-espresso);
+                padding: var(--space-xs) var(--space-sm);
+                border-radius: 8px;
+                backdrop-filter: none;
+            }
+
+            .primary-nav {
+                top: calc(env(safe-area-inset-top, 0px) + var(--space-md));
+                right: var(--space-md);
+                left: auto;
+                transform: none;
+                gap: var(--space-md);
+                align-items: center;
+                background: var(--color-espresso);
+                padding: var(--space-xs);
+                border-radius: 8px;
+                backdrop-filter: none;
+            }
+
+            .nav-btn {
+                font-size: 0.9rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--space-xs) var(--space-sm);
+                min-width: 44px;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+            }
+            
+            .nav-btn:hover,
+            .nav-btn.active {
+                background: rgba(212, 165, 116, 0.2);
+            }
+
+            .container {
+                padding: 0 var(--space-md);
+                max-width: 100vw;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                /* Ensure container doesn't exceed viewport */
+                margin: 0 auto;
+            }
+
+            /* Store Hero Mobile */
+            .store-hero {
+                padding: calc(var(--space-3xl) + env(safe-area-inset-top, 0px)) 0 var(--space-lg);
+            }
+
+            .store-hero h1 {
+                font-size: clamp(2rem, 8vw, 2.8rem);
+                margin-bottom: var(--space-sm);
+            }
+
+            .store-hero p {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+                padding: 0 var(--space-sm);
+            }
+
+            .product-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--space-md);
+                position: relative;
+                background: rgba(42, 31, 23, 0.95);
+                padding: var(--space-md);
+                margin: 0 calc(-1 * var(--space-md));
+                border-radius: 8px;
+                border: 1px solid rgba(212, 165, 116, 0.2);
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                margin-left: calc(-1 * var(--space-md));
+                margin-right: calc(-1 * var(--space-md));
+            }
+
+            .product-search, .sort-dropdown {
+                min-height: 44px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                border-radius: 8px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            .product-search {
+                padding: var(--space-sm) var(--space-md) var(--space-sm) calc(var(--space-md) + 28px);
+            }
+
+            .sort-dropdown {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .search-input-wrapper {
+                width: 100%;
+            }
+            
+            .search-container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                /* Prevent overflow */
+                overflow: hidden;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+                margin-top: var(--space-lg);
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                /* Ensure grid stays within viewport */
+                padding: 0;
+            }
+
+            .product-card {
+                border-radius: 8px;
+                padding: var(--space-lg);
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .product-image-container {
+                height: 200px;
+                margin-bottom: var(--space-md);
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+                margin-bottom: var(--space-sm);
+            }
+
+            .product-description {
+                font-size: 0.95rem;
+                margin-bottom: var(--space-md);
+            }
+
+            .product-price {
+                font-size: 1.2rem;
+                margin: var(--space-sm) 0 var(--space-md);
+            }
+
+            .cta-primary {
+                min-height: 48px;
+                padding: var(--space-md) var(--space-lg);
+                border-radius: 8px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                touch-action: manipulation; /* Improves tap responsiveness */
+            }
+
+            /* Safe area for notched devices */
+            .hero {
+                padding-top: calc(var(--section-padding-mobile) + env(safe-area-inset-top, 0px));
+                /* Ensure hero content doesn't overflow */
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+                box-sizing: border-box;
+            }
+            
+            .hero-content {
+                max-width: calc(100vw - 2 * var(--space-md));
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            
+            .story-headline {
+                font-size: 2rem;
+                padding: 0 var(--space-sm);
+                max-width: calc(100vw - 2 * var(--space-lg));
+                margin: 0 auto 2rem;
+                box-sizing: border-box;
+                word-wrap: break-word;
+            }
+            
+            .story-text {
+                font-size: 1.1rem;
+                padding: 0 var(--space-sm);
+                max-width: calc(100vw - 2 * var(--space-lg));
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+            
+            .craft-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            
+            .craft-text {
+                padding: 0 var(--space-md);
+                max-width: calc(100vw - 2 * var(--space-md));
+                margin: 0 auto;
+                box-sizing: border-box;
+                text-align: left;
+                width: 100%;
+                position: relative;
+                /* Ensure no overflow */
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .craft-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .stat {
+                padding: 1rem;
+                box-sizing: border-box;
+                max-width: 100%;
+                word-wrap: break-word;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            /* Enhanced mobile overflow prevention measures */
+            .story, .craft, .featured-products, .hero {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+                box-sizing: border-box;
+                position: relative;
+            }
+            
+            /* Specific craft section mobile fixes */
+            .craft {
+                padding: 4rem 0;
+            }
+            
+            .craft-text h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                text-align: left;
+                max-width: 100%;
+                word-wrap: break-word;
+            }
+            
+            .craft-text p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                max-width: 100%;
+                text-align: left;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* Ensure all text content has proper constraints */
+            .product-card h3,
+            .product-card .description,
+            .product-card .price {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+                max-width: 100%;
+            }
+            
+            /* Additional safety for very small screens */
+            @media (max-width: 320px) {
+                .container {
+                    padding: 0 var(--space-xs);
+                }
+                
+                .hero-content h1 {
+                    font-size: clamp(1.8rem, 6vw, 2.5rem);
+                }
+                
+                .story-headline {
+                    font-size: 1.5rem;
+                }
+            }
+            
+            /* Ultimate mobile overflow prevention */
+            @media (max-width: 768px) {
+                body, html {
+                    max-width: 100vw !important;
+                    overflow-x: hidden !important;
+                    box-sizing: border-box;
+                }
+                
+                /* Prevent any element from causing horizontal scroll */
+                * {
+                    max-width: 100% !important;
+                }
+                
+                /* Specific overrides for elements that might overflow */
+                .view, .container, .hero, .story, .craft, .featured-products {
+                    max-width: 100vw !important;
+                    overflow-x: hidden !important;
+                    box-sizing: border-box !important;
+                }
+            }
+        }
+
+        /* Enhanced touch interactions for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-btn:active {
+                background: rgba(212, 165, 116, 0.3);
+                transform: scale(0.96);
+                transition: transform 0.1s ease;
+            }
+
+            .logo:active {
+                transform: scale(0.95);
+                transition: transform 0.1s ease;
+            }
+
+            .cta-primary:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+
+            .product-card:active {
+                background: rgba(212, 165, 116, 0.1);
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+
+            /* Ensure all interactive elements have minimum touch targets */
+            .nav-btn, .cta-primary, .logo {
+                min-height: 48px;
+                min-width: 48px;
+                touch-action: manipulation;
+            }
+            
+            .product-card {
+                touch-action: manipulation;
+            }
+
+            /* Remove desktop hover effects on touch devices */
+            .nav-btn:hover, .product-card:hover, .cta-primary:hover {
+                transform: none;
+                box-shadow: none;
+                border-color: initial;
+            }
+            
+            .nav-btn:hover::after {
+                width: 0;
+            }
+
+            /* Optimize scrolling for touch devices */
+            .products-section, .view {
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior: contain;
+            }
+        }
+
+        /* Progressive disclosure patterns */
+        .content-revealer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-revealer.expanded {
+            max-height: 1000px;
+        }
+
+        /* Staggered animations for lists */
+        .staggered-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: staggerIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .staggered-item:nth-child(1) { animation-delay: 0.1s; }
+        .staggered-item:nth-child(2) { animation-delay: 0.2s; }
+        .staggered-item:nth-child(3) { animation-delay: 0.3s; }
+        .staggered-item:nth-child(4) { animation-delay: 0.4s; }
+        .staggered-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes staggerIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Performance optimizations */
+        .view:not(.active) {
+            visibility: hidden;
+        }
+
+        /* Preload hints */
+        .nav-btn {
+            transform: translateZ(0);
+            will-change: transform, opacity;
+        }
+
+        /* GPU acceleration for smooth transitions */
+        .view {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* Optimize image rendering */
+        img {
+            image-rendering: auto;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        
+        /* Smooth focus states */
+        .nav-btn:focus-visible,
+        .cta-primary:focus-visible,
+        .product-search:focus-visible,
+        .sort-dropdown:focus-visible {
+            outline: 2px solid var(--color-golden-crema);
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+        
+        /* Enhanced loading animations */
+        .loading-pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* App-like success states */
+        .success-checkmark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-golden-crema);
+            position: relative;
+        }
+        
+        .success-checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-espresso);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Reduce repaints during animations */
+        .hero-content,
+        .product-card {
+            will-change: transform, opacity;
+        }
+        
+        /* Intersection Observer animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced scroll indicators */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-golden-crema), var(--color-cappuccino));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        /* Smooth scrolling for all elements */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Optimize font loading */
+        @font-face {
+            font-family: 'Inter';
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Crimson Pro';
+            font-display: swap;
+        }
+
+        /* Coffee Animation Styles */
+        .coffee-animation-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .vintage-coffee-bag {
+            width: 200px;
+            height: 250px;
+            z-index: 2;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .coffee-bean {
+            position: absolute;
+            width: 12px;
+            height: 8px;
+            z-index: 1;
+            opacity: 0;
+            animation: fallIntoBag 3s infinite ease-in;
+        }
+
+        .coffee-bean svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(0deg);
+            animation: rotateBeans 3s infinite linear;
+        }
+
+        /* Individual bean animation delays and paths */
+        .bean-1 {
+            left: 45%;
+            animation-delay: 0s;
+        }
+
+        .bean-2 {
+            left: 50%;
+            animation-delay: 0.6s;
+        }
+
+        .bean-3 {
+            left: 52%;
+            animation-delay: 1.2s;
+        }
+
+        .bean-4 {
+            left: 48%;
+            animation-delay: 1.8s;
+        }
+
+        .bean-5 {
+            left: 51%;
+            animation-delay: 2.4s;
+        }
+
+        @keyframes fallIntoBag {
+            0% {
+                top: -20px;
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1.1) rotate(180deg);
+            }
+            70% {
+                top: 120px;
+                opacity: 1;
+                transform: scale(0.8) rotate(360deg);
+            }
+            85% {
+                top: 130px;
+                opacity: 0.8;
+                transform: scale(0.6) rotate(405deg);
+            }
+            100% {
+                top: 140px;
+                opacity: 0;
+                transform: scale(0.3) rotate(450deg);
+            }
+        }
+
+        @keyframes rotateBeans {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Add subtle animation to the bag */
+        .vintage-coffee-bag {
+            animation: bagPulse 6s infinite ease-in-out;
+        }
+
+        @keyframes bagPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .coffee-animation-container {
+                height: 250px;
+            }
+            
+            .vintage-coffee-bag {
+                width: 160px;
+                height: 200px;
+            }
+            
+            .coffee-bean {
+                width: 10px;
+                height: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Skip to main content -->
+    
+    <!-- Fixed navigation elements -->
+    <a href="#" class="logo" data-navigate="home" aria-label="Suprimo Coffee Home">SUPRIMO</a>
+    
+    <nav class="primary-nav" role="navigation" aria-label="Main navigation">
+        <button class="nav-btn active" data-navigate="home" aria-label="Home">Home</button>
+        <button class="nav-btn" data-navigate="store" aria-label="Store">Store</button>
+    </nav>
+    
+    <!-- Page transition indicator -->
+    <div class="page-transition-indicator" id="page-transition-indicator"></div>
+    
+    <!-- Cart overlay -->
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-cart" aria-label="Close cart">&times;</button>
+            </div>
+            <div class="cart-content" id="cart-content">
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Page Application Container -->
+    <div class="app-container">
+        <!-- Home View -->
+        <div class="view active" id="home-view" role="main">
+            <main id="main">
+                <section class="hero" id="home" role="banner">
+                    <div class="container">
+                        <div class="hero-content">
+                            <h1><span class="word">Every</span> <span class="word">Cup</span> <span class="word">Tells</span> <span class="word">a</span> <span class="word">Story</span> <span class="word">of</span> <span class="accent word">Obsession</span></h1>
+                            <p class="hero-subtext">Hand-roasted in small batches by people who believe coffee is poetry, not commodity</p>
+                            <a href="#" class="cta-primary" data-navigate="store" aria-label="Shop our coffee blends">Discover Your Blend</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Story Section -->
+                <section class="story">
+                    <div class="container">
+                        <div class="story-content">
+                            <h2 class="story-headline">Where Obsession Meets Excellence</h2>
+                            <p class="story-text">
+                                In the quiet hours before dawn, when the world sleeps, we roast. Each bean is chosen with the reverence of a curator selecting art. Our process isn't just about coffee—it's about capturing the soul of the soil, the whispers of the wind, and the dedication of farmers who tend to each plant as if it were their child.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Craft Section -->
+                <section class="craft">
+                    <div class="container">
+                        <div class="craft-grid">
+                            <div class="craft-text">
+                                <h3>The Art of Roasting</h3>
+                                <p>Temperature is poetry. Time is sculpture. Every batch tells a story, and we are the storytellers who transform green promises into brown gold.</p>
+                                
+                                <h3>Single Origin Excellence</h3>
+                                <p>From Ethiopian highlands to Colombian valleys, we source beans that speak of their birthplace with every sip.</p>
+                            </div>
+                            <div class="craft-visual">
+                                <div class="coffee-animation-container">
+                                    <svg class="vintage-coffee-bag" viewBox="0 0 200 250" fill="none">
+                                        <!-- Coffee bag body -->
+                                        <rect x="40" y="80" width="120" height="140" rx="8" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+                                        
+                                        <!-- Bag top folded section -->
+                                        <rect x="45" y="70" width="110" height="20" rx="4" fill="#A0522D"/>
+                                        <rect x="50" y="75" width="100" height="10" rx="2" fill="#CD853F"/>
+                                        
+                                        <!-- Vintage label -->
+                                        <rect x="55" y="100" width="90" height="50" rx="3" fill="#F5DEB3" opacity="0.9"/>
+                                        <text x="100" y="118" text-anchor="middle" font-family="serif" font-size="10" fill="#654321" font-weight="bold">PREMIUM</text>
+                                        <text x="100" y="130" text-anchor="middle" font-family="serif" font-size="8" fill="#654321">COFFEE</text>
+                                        <text x="100" y="142" text-anchor="middle" font-family="serif" font-size="8" fill="#654321">BEANS</text>
+                                        
+                                        <!-- Decorative elements -->
+                                        <circle cx="70" cy="160" r="3" fill="#654321" opacity="0.6"/>
+                                        <circle cx="130" cy="160" r="3" fill="#654321" opacity="0.6"/>
+                                        <rect x="75" y="158" width="50" height="1" fill="#654321" opacity="0.4"/>
+                                        
+                                        <!-- Bag opening -->
+                                        <ellipse cx="100" cy="80" rx="35" ry="8" fill="#2F1B14"/>
+                                    </svg>
+                                    
+                                    <!-- Falling coffee beans -->
+                                    <div class="coffee-bean bean-1">
+                                        <svg viewBox="0 0 12 8" fill="#654321">
+                                            <ellipse cx="6" cy="4" rx="5" ry="3"/>
+                                            <line x1="6" y1="1" x2="6" y2="7" stroke="#8B4513" stroke-width="0.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="coffee-bean bean-2">
+                                        <svg viewBox="0 0 12 8" fill="#654321">
+                                            <ellipse cx="6" cy="4" rx="5" ry="3"/>
+                                            <line x1="6" y1="1" x2="6" y2="7" stroke="#8B4513" stroke-width="0.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="coffee-bean bean-3">
+                                        <svg viewBox="0 0 12 8" fill="#654321">
+                                            <ellipse cx="6" cy="4" rx="5" ry="3"/>
+                                            <line x1="6" y1="1" x2="6" y2="7" stroke="#8B4513" stroke-width="0.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="coffee-bean bean-4">
+                                        <svg viewBox="0 0 12 8" fill="#654321">
+                                            <ellipse cx="6" cy="4" rx="5" ry="3"/>
+                                            <line x1="6" y1="1" x2="6" y2="7" stroke="#8B4513" stroke-width="0.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="coffee-bean bean-5">
+                                        <svg viewBox="0 0 12 8" fill="#654321">
+                                            <ellipse cx="6" cy="4" rx="5" ry="3"/>
+                                            <line x1="6" y1="1" x2="6" y2="7" stroke="#8B4513" stroke-width="0.5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Products Section -->
+                <section class="featured-products" id="shop">
+                    <div class="container">
+                        <div class="featured-intro fade-in-up">
+                            <h2>Our Signature Blends</h2>
+                            <p>Two distinct expressions of our craft, each telling its own story</p>
+                        </div>
+                        
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <h3>The Goat Blend</h3>
+                                <p class="description">Our signature medium roast. Balanced, smooth, with notes of chocolate and caramel. Perfect for those who appreciate complexity without overwhelming intensity.</p>
+                                <div class="price">R 459</div>
+                                <button class="cta-primary" data-navigate="store">Shop Now</button>
+                            </div>
+                            
+                            <div class="product-card">
+                                <h3>Majestic Blend</h3>
+                                <p class="description">Bold dark roast for the adventurous. Rich, full-bodied with hints of dark chocolate and smoky undertones. For those who demand intensity.</p>
+                                <div class="price">R 499</div>
+                                <button class="cta-primary" data-navigate="store">Shop Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Store View -->
+        <div class="view" id="store-view" role="main">
+            <main id="main">
+                <!-- Store Hero Section -->
+                <section class="store-hero">
+                    <div class="container">
+                        <div class="store-hero-content">
+                            <h1>Premium Coffee Store</h1>
+                            <p>Discover our carefully curated collection of artisanal coffee blends</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="products-section">
+                    <div class="container">
+                        <!-- Product Search & Filter -->
+                        <div class="product-controls">
+                            <div class="search-container">
+                                <div class="search-input-wrapper">
+                                    <svg class="search-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                    </svg>
+                                    <input type="text" id="product-search" class="product-search" placeholder="Search coffee blends..." aria-label="Search products">
+                                </div>
+                            </div>
+                            <select class="sort-dropdown" id="sort-dropdown" aria-label="Sort products">
+                                <option value="name">Sort by Name</option>
+                                <option value="price">Sort by Price</option>
+                                <option value="popularity">Sort by Popularity</option>
+                            </select>
+                        </div>
+
+                        <div class="products-grid" id="products-grid">
+                            <article class="product-card staggered-item" data-product="goat-blend">
+                                <div class="product-image-container">
+                                    <img src="/reference images/The-Goat-1.jpeg" alt="The Goat Blend Coffee" class="product-image">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">The Goat Blend</h3>
+                                    <p class="product-description">Our signature medium roast with balanced complexity. Notes of chocolate and caramel create a smooth, approachable cup that's perfect any time of day.</p>
+                                    <div class="product-price">R 459</div>
+                                    <button class="cta-primary" aria-label="Add The Goat Blend to cart">Add to Cart</button>
+                                </div>
+                            </article>
+                            
+                            <article class="product-card staggered-item" data-product="majestic-blend">
+                                <div class="product-image-container">
+                                    <img src="/reference images/majestic-1.jpeg" alt="Majestic Blend Coffee" class="product-image">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Majestic Blend</h3>
+                                    <p class="product-description">Bold dark roast for the fearless coffee lover. Rich, full-bodied with hints of dark chocolate and smoky undertones that linger long after the last sip.</p>
+                                    <div class="product-price">R 499</div>
+                                    <button class="cta-primary" aria-label="Add Majestic Blend to cart">Add to Cart</button>
+                                </div>
+                            </article>
+
+                            <article class="product-card staggered-item" data-product="morning-ritual">
+                                <div class="product-image-container">
+                                    <img src="/reference images/goat-250.jpeg" alt="Morning Ritual Coffee" class="product-image">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Morning Ritual</h3>
+                                    <p class="product-description">Light roast perfection. Bright, clean, with floral notes and citrus undertones. The ideal way to start your day with clarity and energy.</p>
+                                    <div class="product-price">R 439</div>
+                                    <button class="cta-primary" aria-label="Add Morning Ritual to cart">Add to Cart</button>
+                                </div>
+                            </article>
+
+                            <article class="product-card staggered-item" data-product="midnight-blend">
+                                <div class="product-image-container">
+                                    <img src="/reference images/MAGESTIC-250.jpeg" alt="Midnight Blend Coffee" class="product-image">
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-title">Midnight Blend</h3>
+                                    <p class="product-description">Decaf done right. Full flavor without the caffeine. Rich, smooth, with notes of nuts and vanilla. Perfect for evening contemplation.</p>
+                                    <div class="product-price">R 419</div>
+                                    <button class="cta-primary" aria-label="Add Midnight Blend to cart">Add to Cart</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Single Page Application Router
+        class SuprimoSPA {
+            constructor() {
+                this.currentView = 'home';
+                this.views = {
+                    home: {
+                        element: document.getElementById('home-view'),
+                        title: 'Suprimo Coffee - Where Craft Meets Soul',
+                        description: 'Premium artisanal coffee hand-roasted in small batches. The Goat Blend & Majestic - delivered at peak freshness.'
+                    },
+                    store: {
+                        element: document.getElementById('store-view'),
+                        title: 'Store - Suprimo Coffee | Premium Artisanal Coffee',
+                        description: 'Shop premium artisanal coffee. The Goat Blend & Majestic - hand-roasted in small batches, delivered at peak freshness.'
+                    }
+                };
+                this.isTransitioning = false;
+                this.initializeRouter();
+                this.initializeNavigation();
+                this.initializeShopify();
+                this.initializeCart();
+                this.setupInitialState();
+            }
+
+            initializeRouter() {
+                // Handle browser back/forward buttons
+                window.addEventListener('popstate', (e) => {
+                    const state = e.state;
+                    if (state && state.view) {
+                        this.navigateToView(state.view, false);
+                    } else {
+                        this.navigateToView('home', false);
+                    }
+                });
+
+                // Set initial state
+                const initialPath = window.location.pathname;
+                const initialView = initialPath.includes('store') ? 'store' : 'home';
+                this.replaceState(initialView);
+            }
+
+            initializeNavigation() {
+                // Handle all navigation clicks with haptic feedback
+                document.addEventListener('click', (e) => {
+                    const target = e.target.closest('[data-navigate]');
+                    if (target) {
+                        e.preventDefault();
+                        this.triggerHapticFeedback('light');
+                        const view = target.getAttribute('data-navigate');
+                        this.navigateToView(view, true);
+                    }
+                    
+                    // Add haptic feedback for buttons
+                    if (target && (target.classList.contains('cta-primary') || target.classList.contains('nav-btn'))) {
+                        this.triggerHapticFeedback('medium');
+                    }
+                });
+
+                // Preload views on hover for instant navigation
+                document.addEventListener('mouseenter', (e) => {
+                    const target = e.target.closest('[data-navigate]');
+                    if (target) {
+                        const view = target.getAttribute('data-navigate');
+                        this.preloadView(view);
+                    }
+                }, true);
+            }
+
+            navigateToView(viewName, pushState = true) {
+                if (this.isTransitioning || viewName === this.currentView) {
+                    return;
+                }
+
+                const targetView = this.views[viewName];
+                if (!targetView) {
+                    console.error(`View '${viewName}' not found`);
+                    return;
+                }
+
+                this.isTransitioning = true;
+
+                // Show loading indicator
+                this.showTransitionIndicator();
+
+                // Add loading state to navigation
+                this.setNavigationLoading(viewName);
+
+                // Update navigation state
+                this.updateNavigation(viewName);
+                
+                // Update document metadata
+                this.updateMetadata(targetView);
+
+                // Perform smooth transition
+                this.transitionToView(viewName, () => {
+                    this.currentView = viewName;
+                    this.isTransitioning = false;
+                    
+                    // Update browser history
+                    if (pushState) {
+                        this.pushState(viewName);
+                    }
+
+                    // Smooth scroll to top with enhanced behavior
+                    this.scrollToTop();
+
+                    // Reinitialize view-specific components
+                    this.initializeViewComponents(viewName);
+                    
+                    // Remove loading states
+                    this.hideTransitionIndicator();
+                    this.clearNavigationLoading();
+                    
+                    // Add delightful interactions for new view
+                    this.addDelightfulInteractions();
+                    
+                    // Restart staggered animations
+                    this.initializeStaggeredAnimations();
+                });
+            }
+
+            transitionToView(viewName, callback) {
+                const currentViewElement = this.views[this.currentView].element;
+                const targetViewElement = this.views[viewName].element;
+
+                // Start exit animation on current view
+                currentViewElement.classList.add('exiting');
+                
+                // After exit animation, show new view
+                setTimeout(() => {
+                    currentViewElement.classList.remove('active', 'exiting');
+                    targetViewElement.classList.add('active');
+                    
+                    // Complete transition
+                    setTimeout(() => {
+                        if (callback) callback();
+                    }, 100);
+                }, 300);
+            }
+
+            updateNavigation(activeView) {
+                const navButtons = document.querySelectorAll('.nav-btn');
+                navButtons.forEach(btn => {
+                    const targetView = btn.getAttribute('data-navigate');
+                    if (targetView === activeView) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            updateMetadata(viewData) {
+                document.getElementById('dynamic-title').textContent = viewData.title;
+                document.getElementById('dynamic-description').setAttribute('content', viewData.description);
+                document.title = viewData.title;
+            }
+
+            pushState(viewName) {
+                const url = viewName === 'home' ? '/' : `/${viewName}`;
+                window.history.pushState({ view: viewName }, '', url);
+            }
+
+            replaceState(viewName) {
+                const url = viewName === 'home' ? '/' : `/${viewName}`;
+                window.history.replaceState({ view: viewName }, '', url);
+            }
+
+            preloadView(viewName) {
+                // Views are already loaded in the DOM, so this is primarily for
+                // any dynamic content or animations that need preparation
+                const targetView = this.views[viewName];
+                if (targetView && targetView.element) {
+                    // Prepare view for faster transition
+                    targetView.element.style.willChange = 'transform, opacity';
+                    
+                    // Pre-initialize components if needed
+                    if (viewName === 'store' && !targetView.element.dataset.initialized) {
+                        this.initializeViewComponents(viewName);
+                        targetView.element.dataset.initialized = 'true';
+                    }
+                }
+            }
+
+            initializeViewComponents(viewName) {
+                if (viewName === 'store') {
+                    this.initializeProductSearch();
+                    this.initializeShopifyButtons();
+                }
+            }
+
+            initializeProductSearch() {
+                const searchInput = document.getElementById('product-search');
+                const sortDropdown = document.getElementById('sort-dropdown');
+                const productsGrid = document.getElementById('products-grid');
+
+                if (searchInput && productsGrid) {
+                    // Debounce search for better performance
+                    let searchTimeout;
+                    
+                    const filterProducts = () => {
+                        const searchTerm = searchInput.value.toLowerCase();
+                        const sortBy = sortDropdown.value;
+                        const products = Array.from(productsGrid.querySelectorAll('.product-card'));
+
+                        // Use requestAnimationFrame for smooth filtering
+                        requestAnimationFrame(() => {
+                            // Filter products
+                            products.forEach(product => {
+                                const productTitle = product.querySelector('.product-title, h3');
+                                const productDesc = product.querySelector('.product-description, .description');
+                                const titleText = productTitle ? productTitle.textContent.toLowerCase() : '';
+                                const descText = productDesc ? productDesc.textContent.toLowerCase() : '';
+                                const matches = titleText.includes(searchTerm) || descText.includes(searchTerm);
+                                product.style.display = matches ? 'block' : 'none';
+                            });
+
+                            // Sort visible products
+                            const visibleProducts = products.filter(p => p.style.display !== 'none');
+                            this.sortProducts(visibleProducts, sortBy);
+                        });
+                    };
+
+                    const debouncedFilter = () => {
+                        clearTimeout(searchTimeout);
+                        searchTimeout = setTimeout(filterProducts, 150);
+                    };
+
+                    searchInput.addEventListener('input', debouncedFilter);
+                    sortDropdown.addEventListener('change', filterProducts);
+                }
+            }
+
+            sortProducts(products, sortBy) {
+                const grid = document.getElementById('products-grid');
+                
+                products.sort((a, b) => {
+                    switch (sortBy) {
+                        case 'name':
+                            const titleA = a.querySelector('.product-title, h3').textContent;
+                            const titleB = b.querySelector('.product-title, h3').textContent;
+                            return titleA.localeCompare(titleB);
+                        case 'price':
+                            const priceA = parseFloat(a.querySelector('.product-price, .price').textContent.replace(/[^\d]/g, ''));
+                            const priceB = parseFloat(b.querySelector('.product-price, .price').textContent.replace(/[^\d]/g, ''));
+                            return priceA - priceB;
+                        case 'popularity':
+                            // Could implement based on data attributes or other criteria
+                            return 0;
+                        default:
+                            return 0;
+                    }
+                });
+
+                // Reorder in DOM
+                products.forEach(product => {
+                    grid.appendChild(product);
+                });
+            }
+
+            initializeShopify() {
+                // Initialize Shopify Buy SDK when available
+                if (typeof ShopifyBuy !== 'undefined') {
+                    this.initializeShopifyButtons();
+                } else {
+                    // Wait for Shopify SDK to load
+                    setTimeout(() => this.initializeShopify(), 100);
+                }
+            }
+
+            initializeShopifyButtons() {
+                // This would typically connect to your actual Shopify store
+                // For demo purposes, we'll create placeholder functionality
+                console.log('Initializing Shopify buy buttons...');
+                
+                // Example Shopify integration code would go here
+                // const client = ShopifyBuy.buildClient({
+                //     domain: 'your-shop-name.myshopify.com',
+                //     storefrontAccessToken: 'your-storefront-access-token'
+                // });
+            }
+
+            initializeCart() {
+                this.cart = {
+                    items: JSON.parse(localStorage.getItem('suprimo-cart')) || [],
+                    isOpen: false
+                };
+
+                // Cart toggle functionality
+                const cartOverlay = document.getElementById('cart-overlay');
+                const closeCartBtn = document.querySelector('.close-cart');
+
+                if (closeCartBtn) {
+                    closeCartBtn.addEventListener('click', () => this.closeCart());
+                }
+
+                if (cartOverlay) {
+                    cartOverlay.addEventListener('click', (e) => {
+                        if (e.target === cartOverlay) {
+                            this.closeCart();
+                        }
+                    });
+                }
+
+                // Add to cart button functionality
+                document.addEventListener('click', (e) => {
+                    if (e.target.matches('.cta-primary') && e.target.textContent.includes('Add to Cart')) {
+                        e.preventDefault();
+                        const productCard = e.target.closest('.product-card');
+                        const productData = productCard ? productCard.dataset.product : null;
+                        if (productData) {
+                            this.addToCart(productData, e.target);
+                        }
+                    }
+                });
+
+                // Keyboard navigation for cart
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.cart.isOpen) {
+                        this.closeCart();
+                    }
+                });
+
+                // Update cart count on initialization
+                this.updateCartDisplay();
+            }
+
+            openCart() {
+                const cartOverlay = document.getElementById('cart-overlay');
+                if (cartOverlay) {
+                    cartOverlay.classList.add('active');
+                    this.cart.isOpen = true;
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            closeCart() {
+                const cartOverlay = document.getElementById('cart-overlay');
+                if (cartOverlay) {
+                    cartOverlay.classList.remove('active');
+                    this.cart.isOpen = false;
+                    document.body.style.overflow = '';
+                }
+            }
+
+            addToCart(productId, button) {
+                const products = {
+                    'goat-blend': {
+                        name: 'The Goat Blend',
+                        price: 459,
+                        image: '/reference images/The-Goat-1.jpeg'
+                    },
+                    'majestic-blend': {
+                        name: 'Majestic Blend',
+                        price: 499,
+                        image: '/reference images/majestic-1.jpeg'
+                    },
+                    'morning-ritual': {
+                        name: 'Morning Ritual',
+                        price: 439,
+                        image: '/reference images/goat-250.jpeg'
+                    },
+                    'midnight-blend': {
+                        name: 'Midnight Blend',
+                        price: 419,
+                        image: '/reference images/MAGESTIC-250.jpeg'
+                    }
+                };
+
+                const product = products[productId];
+                if (!product) return;
+
+                // Find existing item or create new one
+                const existingItem = this.cart.items.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.items.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+
+                // Save to localStorage
+                localStorage.setItem('suprimo-cart', JSON.stringify(this.cart.items));
+                
+                // Update display
+                this.updateCartDisplay();
+                
+                // Show feedback
+                this.showCartFeedback(button, 'Added to Cart!');
+                
+                // Optionally open cart
+                setTimeout(() => this.openCart(), 500);
+            }
+
+            updateCartDisplay() {
+                const totalItems = this.cart.items.reduce((sum, item) => sum + item.quantity, 0);
+                const cartContent = document.getElementById('cart-content');
+                
+                // Update the shopify demo cart badge
+                if (window.updateCartBadge) {
+                    window.updateCartBadge(totalItems);
+                }
+                
+                // Update cart content
+                if (totalItems === 0) {
+                    cartContent.innerHTML = '<p class="empty-cart-message">Your cart is empty</p>';
+                } else {
+                    let cartHTML = '<div class="cart-items">';
+                    
+                    this.cart.items.forEach(item => {
+                        cartHTML += `
+                            <div class="cart-item" data-item-id="${item.id}">
+                                <div class="cart-item-image">
+                                    <img src="${item.image}" alt="${item.name}">
+                                </div>
+                                <div class="cart-item-details">
+                                    <h4>${item.name}</h4>
+                                    <div class="cart-item-price">R ${item.price}</div>
+                                    <div class="cart-item-quantity">
+                                        <button class="quantity-btn minus" onclick="window.SuprimoApp.updateItemQuantity('${item.id}', ${item.quantity - 1})" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
+                                        <input type="number" value="${item.quantity}" min="1" onchange="window.SuprimoApp.updateItemQuantity('${item.id}', this.value)">
+                                        <button class="quantity-btn plus" onclick="window.SuprimoApp.updateItemQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                                    </div>
+                                </div>
+                                <div class="cart-item-total">
+                                    <div class="item-total">R ${item.price * item.quantity}</div>
+                                    <button class="remove-item" onclick="window.SuprimoApp.removeFromCart('${item.id}')" aria-label="Remove item">×</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    const total = this.cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    cartHTML += `</div>
+                        <div class="cart-footer">
+                            <div class="cart-subtotal">
+                                <span>Subtotal:</span>
+                                <span>R ${total}</span>
+                            </div>
+                            <button class="checkout-btn" onclick="window.SuprimoApp.checkout()">Proceed to Checkout</button>
+                        </div>
+                    `;
+                    
+                    cartContent.innerHTML = cartHTML;
+                }
+                
+                // Add cart button to nav if it doesn't exist
+                this.addCartButtonToNav(totalItems);
+            }
+
+            addCartButtonToNav(totalItems) {
+                // Don't create a cart button here - let shopify-integration-demo.js handle it
+                // This prevents duplicate cart buttons in the navigation
+            }
+
+            showCartFeedback(button, message) {
+                const originalText = button.textContent;
+                button.textContent = message;
+                button.style.background = '#4CAF50';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                }, 2000);
+            }
+
+            updateItemQuantity(itemId, newQuantity) {
+                const quantity = parseInt(newQuantity);
+                if (quantity < 1) return;
+                
+                const item = this.cart.items.find(item => item.id === itemId);
+                if (item) {
+                    item.quantity = quantity;
+                    localStorage.setItem('suprimo-cart', JSON.stringify(this.cart.items));
+                    this.updateCartDisplay();
+                }
+            }
+
+            removeFromCart(itemId) {
+                this.cart.items = this.cart.items.filter(item => item.id !== itemId);
+                localStorage.setItem('suprimo-cart', JSON.stringify(this.cart.items));
+                this.updateCartDisplay();
+                
+                // Close cart if empty
+                if (this.cart.items.length === 0) {
+                    setTimeout(() => this.closeCart(), 1000);
+                }
+            }
+
+            checkout() {
+                if (!shopifyCart || !shopifyCart.webUrl) {
+                    alert('Cart is empty or Shopify integration not initialized.');
+                    return;
+                }
+                
+                // Redirect to Shopify checkout
+                window.location.href = shopifyCart.webUrl;
+            }
+
+            showTransitionIndicator() {
+                const indicator = document.getElementById('page-transition-indicator');
+                if (indicator) {
+                    indicator.classList.add('active');
+                }
+            }
+
+            hideTransitionIndicator() {
+                const indicator = document.getElementById('page-transition-indicator');
+                if (indicator) {
+                    setTimeout(() => {
+                        indicator.classList.remove('active');
+                    }, 100);
+                }
+            }
+
+            setNavigationLoading(targetView) {
+                const navButtons = document.querySelectorAll('.nav-btn');
+                navButtons.forEach(btn => {
+                    const btnView = btn.getAttribute('data-navigate');
+                    if (btnView === targetView) {
+                        btn.classList.add('loading');
+                    }
+                });
+            }
+
+            clearNavigationLoading() {
+                const navButtons = document.querySelectorAll('.nav-btn');
+                navButtons.forEach(btn => {
+                    btn.classList.remove('loading');
+                });
+            }
+
+            // Enhanced haptic feedback simulation
+            triggerHapticFeedback(type = 'light') {
+                // Simulate haptic feedback through micro-animations
+                if (navigator.vibrate) {
+                    switch (type) {
+                        case 'light':
+                            navigator.vibrate(10);
+                            break;
+                        case 'medium':
+                            navigator.vibrate(20);
+                            break;
+                        case 'heavy':
+                            navigator.vibrate([30, 10, 30]);
+                            break;
+                    }
+                }
+            }
+
+            setupInitialState() {
+                // Determine initial view based on URL path or hash
+                const path = window.location.pathname;
+                const hash = window.location.hash;
+                const urlParams = new URLSearchParams(window.location.search);
+                
+                let initialView = 'home';
+                
+                // Check URL path first
+                if (path.includes('store')) {
+                    initialView = 'store';
+                }
+                
+                // Check hash for redirects from old site
+                if (hash === '#store' || hash.includes('store')) {
+                    initialView = 'store';
+                    // Clean up the hash
+                    window.history.replaceState(null, '', '/store');
+                }
+                
+                if (initialView !== 'home') {
+                    this.navigateToView(initialView, false);
+                } else {
+                    // Ensure we start at the top even for home view
+                    this.scrollToTop();
+                }
+                
+                // Check if cart should be opened
+                if (urlParams.get('cart') === 'open' || hash.includes('cart=open')) {
+                    setTimeout(() => this.openCart(), 1000);
+                }
+                
+                // Initialize staggered animations for current view
+                this.initializeStaggeredAnimations();
+            }
+
+            
+            initializeStaggeredAnimations() {
+                // Reset staggered animations for the current view
+                const currentViewElement = this.views[this.currentView].element;
+                const staggeredItems = currentViewElement.querySelectorAll('.staggered-item');
+                
+                staggeredItems.forEach((item, index) => {
+                    item.style.animationDelay = `${(index + 1) * 0.1}s`;
+                });
+            }
+            
+            // Add engagement micro-interactions
+            addDelightfulInteractions() {
+                // Parallax effect for hero section
+                if (this.currentView === 'home') {
+                    window.addEventListener('scroll', this.handleParallax.bind(this), { passive: true });
+                }
+            }
+            
+            handleParallax(e) {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-content');
+                if (hero) {
+                    const speed = scrolled * 0.5;
+                    hero.style.transform = `translateY(${speed}px)`;
+                }
+            }
+
+            // Enhanced scroll to top functionality
+            scrollToTop() {
+                // First, ensure we're at the top immediately for instant visual feedback
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                
+                // Also scroll the main container if it exists
+                const mainContainer = document.querySelector('.app-container');
+                if (mainContainer) {
+                    mainContainer.scrollTop = 0;
+                }
+                
+                // Additional smooth scroll for any remaining scroll position
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Reset any view-specific scroll positions
+                const activeView = this.views[this.currentView].element;
+                if (activeView) {
+                    activeView.scrollTop = 0;
+                }
+            }
+            
+        }
+
+        // Initialize the SPA when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            window.SuprimoApp = new SuprimoSPA();
+            
+            // Initialize scroll progress indicator
+            const scrollIndicator = document.createElement('div');
+            scrollIndicator.className = 'scroll-indicator';
+            document.body.appendChild(scrollIndicator);
+            
+            // Update scroll progress
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                scrollIndicator.style.transform = `scaleX(${scrollPercent / 100})`;
+            }, { passive: true });
+            
+            // Initialize intersection observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Performance monitoring
+            if ('performance' in window) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        console.log('SPA initialization time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+                    }, 0);
+                });
+            }
+        });
+
+        // Service Worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // navigator.serviceWorker.register('/sw.js')
+                //     .then(registration => console.log('SW registered'))
+                //     .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>

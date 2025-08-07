@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suprimo Coffee - Design System</title>
+    <link rel="stylesheet" href="design-tokens.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .ds-header {
+            background: var(--color-espresso);
+            color: var(--color-oat-milk);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+        }
+        
+        .ds-header h1 {
+            font-size: var(--text-display);
+            font-weight: var(--weight-light);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .ds-header .subtitle {
+            color: var(--color-golden-crema);
+            font-style: italic;
+            font-size: var(--text-body-large);
+        }
+        
+        .ds-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+        
+        .ds-section {
+            background: white;
+            border-radius: 8px;
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ds-section h2 {
+            font-size: var(--text-headline);
+            color: var(--color-espresso);
+            margin-bottom: var(--space-lg);
+            font-weight: var(--weight-light);
+        }
+        
+        .ds-section h3 {
+            font-size: var(--text-body-large);
+            color: var(--color-cinnamon);
+            margin: var(--space-lg) 0 var(--space-md) 0;
+            font-weight: var(--weight-regular);
+        }
+        
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .color-swatch {
+            text-align: center;
+        }
+        
+        .color-box {
+            height: 80px;
+            border-radius: 4px;
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-caption);
+            font-family: var(--font-sans);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .color-name {
+            font-size: var(--text-caption);
+            color: #666;
+            font-family: var(--font-sans);
+        }
+        
+        .color-value {
+            font-size: var(--text-caption);
+            color: #999;
+            font-family: monospace;
+        }
+        
+        /* Typography Samples */
+        .type-sample {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-md);
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .type-label {
+            font-size: var(--text-caption);
+            color: #666;
+            font-family: var(--font-sans);
+            margin-bottom: var(--space-xs);
+        }
+        
+        /* Spacing Visualization */
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+        
+        .spacing-box {
+            background: var(--color-golden-crema);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-caption);
+            font-family: var(--font-sans);
+        }
+        
+        .spacing-label {
+            min-width: 80px;
+            font-size: var(--text-caption);
+            font-family: monospace;
+            color: #666;
+        }
+        
+        /* Component Examples */
+        .component-demo {
+            padding: var(--space-lg);
+            background: var(--color-espresso);
+            border-radius: 4px;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .button-demo {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        /* Shadow Examples */
+        .shadow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .shadow-box {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: 4px;
+            text-align: center;
+            font-size: var(--text-caption);
+            font-family: var(--font-sans);
+            color: #666;
+        }
+        
+        /* Animation Demo */
+        .animation-demo {
+            display: flex;
+            gap: var(--space-xl);
+            justify-content: center;
+            padding: var(--space-xl);
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .anim-box {
+            width: 100px;
+            height: 100px;
+            background: var(--color-golden-crema);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-caption);
+            transition: all var(--duration-normal) var(--ease-smooth);
+        }
+        
+        .anim-box:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lifted);
+        }
+        
+        /* Coffee Cup Demo */
+        .coffee-visual-demo {
+            display: flex;
+            justify-content: center;
+            padding: var(--space-xl);
+            background: var(--color-dark-roast);
+            border-radius: 4px;
+        }
+        
+        .demo-coffee-cup {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            background: radial-gradient(ellipse at center, #3A2F2A 0%, #2A1F1A 70%);
+            border-radius: 50%;
+            box-shadow: var(--shadow-inset), var(--shadow-deep);
+        }
+        
+        .demo-steam {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            filter: blur(8px);
+            opacity: 0.3;
+        }
+        
+        .demo-steam::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background: var(--color-golden-crema);
+            border-radius: 50%;
+            left: 5px;
+            animation: rise 3s ease-in-out infinite;
+        }
+        
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+        }
+        
+        /* Grid Demo */
+        .grid-demo {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .grid-container {
+            display: grid;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+        
+        .grid-container.halves {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .grid-container.thirds {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-item {
+            background: #f0f0f0;
+            padding: var(--space-lg);
+            border-radius: 4px;
+            text-align: center;
+            font-family: var(--font-sans);
+            color: #666;
+        }
+        
+        /* Texture Demo */
+        .texture-demo {
+            height: 200px;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-oat-milk);
+            font-size: var(--text-body-large);
+        }
+        
+        .texture-grain {
+            background: var(--color-espresso);
+        }
+        
+        .texture-grain::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><defs><filter id="grain"><feTurbulence baseFrequency="0.9" numOctaves="4" /></filter></defs><rect width="200" height="200" filter="url(%23grain)" opacity="0.3"/></svg>');
+            pointer-events: none;
+        }
+        
+        .texture-warmth {
+            background: var(--color-coffee-bean);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body>
+    <header class="ds-header">
+        <h1>Suprimo Coffee Design System</h1>
+        <p class="subtitle">Where Craft Meets Soul</p>
+    </header>
+    
+    <div class="ds-container">
+        <!-- Colors Section -->
+        <section class="ds-section">
+            <h2>Color Palette</h2>
+            
+            <h3>Dark Grounds - Primary Backgrounds</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-espresso);">#1A1614</div>
+                    <div class="color-name">Espresso</div>
+                    <div class="color-value">--color-espresso</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-dark-roast);">#1F1A17</div>
+                    <div class="color-name">Dark Roast</div>
+                    <div class="color-value">--color-dark-roast</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-medium-roast);">#221D1A</div>
+                    <div class="color-name">Medium Roast</div>
+                    <div class="color-value">--color-medium-roast</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-coffee-bean);">#2A2420</div>
+                    <div class="color-name">Coffee Bean</div>
+                    <div class="color-value">--color-coffee-bean</div>
+                </div>
+            </div>
+            
+            <h3>Warm Accents - Brand Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-golden-crema);">#D4A574</div>
+                    <div class="color-name">Golden Crema</div>
+                    <div class="color-value">--color-golden-crema</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-cinnamon);">#8B5A2B</div>
+                    <div class="color-name">Cinnamon</div>
+                    <div class="color-value">--color-cinnamon</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-nutmeg);">#A0522D</div>
+                    <div class="color-name">Nutmeg</div>
+                    <div class="color-value">--color-nutmeg</div>
+                </div>
+            </div>
+            
+            <h3>Light Tones - Text & UI</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-oat-milk); color: #333;">#E8DFD3</div>
+                    <div class="color-name">Oat Milk</div>
+                    <div class="color-value">--color-oat-milk</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-steamed-milk); color: #333;">#FFF8F0</div>
+                    <div class="color-name">Steamed Milk</div>
+                    <div class="color-value">--color-steamed-milk</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-foam); color: #333;">#B8A898</div>
+                    <div class="color-name">Foam</div>
+                    <div class="color-value">--color-foam</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--color-latte); color: #333;">#A89888</div>
+                    <div class="color-name">Latte</div>
+                    <div class="color-value">--color-latte</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Typography Section -->
+        <section class="ds-section">
+            <h2>Typography</h2>
+            
+            <div class="type-sample">
+                <div class="type-label">Hero Title (--text-hero)</div>
+                <div style="font-size: var(--text-hero); font-weight: var(--weight-regular); color: var(--color-espresso);">
+                    Every Cup Tells a Story
+                </div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Display (--text-display)</div>
+                <div style="font-size: var(--text-display); font-weight: var(--weight-light); color: var(--color-espresso);">
+                    The Art of Slow Perfection
+                </div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Headline (--text-headline)</div>
+                <div style="font-size: var(--text-headline); font-weight: var(--weight-light); color: var(--color-cinnamon);">
+                    Single-Origin Obsession
+                </div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Body Large (--text-body-large)</div>
+                <div style="font-size: var(--text-body-large); line-height: var(--leading-relaxed); color: #666;">
+                    Hand-roasted in small batches by people who believe coffee is poetry, not commodity. 
+                    Each bean traced to its exact farm, elevation, and harvest date.
+                </div>
+            </div>
+            
+            <div class="type-sample">
+                <div class="type-label">Body (--text-body)</div>
+                <div style="font-size: var(--text-body); line-height: var(--leading-normal); color: #666;">
+                    In a small Woodstock roastery, we're crafting something different. Not mass-produced. 
+                    Not following trends. Just pure, uncompromising coffee.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Spacing Section -->
+        <section class="ds-section">
+            <h2>Spacing System</h2>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-xs</span>
+                <div class="spacing-box" style="width: var(--space-xs);">8px</div>
+            </div>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-sm</span>
+                <div class="spacing-box" style="width: var(--space-sm);">16px</div>
+            </div>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-md</span>
+                <div class="spacing-box" style="width: var(--space-md);">24px</div>
+            </div>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-lg</span>
+                <div class="spacing-box" style="width: var(--space-lg);">32px</div>
+            </div>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-xl</span>
+                <div class="spacing-box" style="width: var(--space-xl);">48px</div>
+            </div>
+            
+            <div class="spacing-demo">
+                <span class="spacing-label">--space-2xl</span>
+                <div class="spacing-box" style="width: var(--space-2xl);">64px</div>
+            </div>
+        </section>
+        
+        <!-- Components Section -->
+        <section class="ds-section">
+            <h2>Components</h2>
+            
+            <h3>Buttons</h3>
+            <div class="component-demo">
+                <div class="button-demo">
+                    <a href="#" style="
+                        display: inline-block;
+                        padding: 1rem 2.5rem;
+                        background: var(--gradient-button);
+                        color: var(--color-steamed-milk);
+                        text-decoration: none;
+                        font-size: var(--text-small);
+                        letter-spacing: var(--spacing-wide);
+                        transition: all var(--duration-normal) var(--ease-smooth);
+                        box-shadow: var(--shadow-subtle);
+                        text-transform: uppercase;
+                        font-family: var(--font-sans);
+                        font-weight: var(--weight-medium);
+                    ">Discover Your Blend</a>
+                    
+                    <a href="#" style="
+                        display: inline-block;
+                        padding: 1rem 2.5rem;
+                        background: transparent;
+                        color: var(--color-golden-crema);
+                        text-decoration: none;
+                        font-size: var(--text-small);
+                        letter-spacing: var(--spacing-wide);
+                        transition: all var(--duration-normal) var(--ease-smooth);
+                        border: 2px solid var(--color-golden-crema);
+                        text-transform: uppercase;
+                        font-family: var(--font-sans);
+                        font-weight: var(--weight-medium);
+                    ">Learn More</a>
+                </div>
+            </div>
+            
+            <h3>Visual Elements</h3>
+            <div class="coffee-visual-demo">
+                <div class="demo-coffee-cup">
+                    <div class="demo-steam"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Shadows Section -->
+        <section class="ds-section">
+            <h2>Shadows & Elevation</h2>
+            
+            <div class="shadow-grid">
+                <div class="shadow-box" style="box-shadow: var(--shadow-subtle);">
+                    Subtle Shadow<br>--shadow-subtle
+                </div>
+                <div class="shadow-box" style="box-shadow: var(--shadow-lifted);">
+                    Lifted Shadow<br>--shadow-lifted
+                </div>
+                <div class="shadow-box" style="box-shadow: var(--shadow-deep);">
+                    Deep Shadow<br>--shadow-deep
+                </div>
+            </div>
+        </section>
+        
+        <!-- Grid Section -->
+        <section class="ds-section">
+            <h2>Layout Grids</h2>
+            
+            <h3>Two Column Grid</h3>
+            <div class="grid-demo">
+                <div class="grid-container halves">
+                    <div class="grid-item">Column 1</div>
+                    <div class="grid-item">Column 2</div>
+                </div>
+            </div>
+            
+            <h3>Three Column Grid</h3>
+            <div class="grid-demo">
+                <div class="grid-container thirds">
+                    <div class="grid-item">Column 1</div>
+                    <div class="grid-item">Column 2</div>
+                    <div class="grid-item">Column 3</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Textures Section -->
+        <section class="ds-section">
+            <h2>Background Textures</h2>
+            
+            <h3>Grain Texture</h3>
+            <div class="texture-demo texture-grain">
+                <span>Subtle grain overlay</span>
+            </div>
+            
+            <h3>Warmth Gradient</h3>
+            <div class="texture-demo texture-warmth">
+                <span>Radial warmth effect</span>
+            </div>
+        </section>
+        
+        <!-- Animation Section -->
+        <section class="ds-section">
+            <h2>Animations & Interactions</h2>
+            
+            <div class="animation-demo">
+                <div class="anim-box">Hover Me</div>
+            </div>
+            
+            <p style="text-align: center; color: #666; margin-top: var(--space-md);">
+                Hover over the box to see the lift animation with shadow
+            </p>
+        </section>
+    </div>
+</body>
+</html>

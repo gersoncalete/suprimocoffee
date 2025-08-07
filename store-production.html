@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Primary Meta Tags -->
+    <title>Store - Suprimo Coffee | Premium Artisanal Coffee Blends</title>
+    <meta name="title" content="Store - Suprimo Coffee | Premium Artisanal Coffee Blends">
+    <meta name="description" content="Shop premium artisanal coffee. The Goat Blend & Majestic - hand-roasted in small batches, delivered at peak freshness. Free shipping over R200.">
+    <meta name="keywords" content="buy coffee online, artisanal coffee shop, The Goat Blend, Majestic blend, premium coffee beans, Cape Town coffee">
+    <meta name="author" content="Suprimo Coffee">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suprimocoffee.co.za/store">
+    <meta property="og:title" content="Store - Suprimo Coffee | Premium Artisanal Coffee">
+    <meta property="og:description" content="Shop premium artisanal coffee. Hand-roasted in small batches, delivered at peak freshness.">
+    <meta property="og:image" content="https://suprimocoffee.co.za/store-og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://suprimocoffee.co.za/store">
+    <meta property="twitter:title" content="Store - Suprimo Coffee | Premium Artisanal Coffee">
+    <meta property="twitter:description" content="Shop premium artisanal coffee. Hand-roasted in small batches, delivered at peak freshness.">
+    <meta property="twitter:image" content="https://suprimocoffee.co.za/store-og-image.jpg">
+    
+    <!-- Mobile & App -->
+    <meta name="theme-color" content="#1F1A17">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Suprimo Coffee Store">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://sdks.shopifycdn.com">
+    
+    <!-- Critical CSS for immediate render -->
+    <style>
+        :root {
+            --color-espresso: #1F1A17;
+            --color-golden-crema: #D4A574;
+            --color-oat-milk: #E8DFD3;
+            --color-foam: #B8A898;
+            --color-cappuccino: #A89888;
+            --color-steamed-milk: #FFF8F0;
+            --gradient-button: linear-gradient(135deg, #8B5A2B 0%, #A0522D 100%);
+            --gradient-button-hover: linear-gradient(135deg, #A0522D 0%, #8B5A2B 100%);
+            --shadow-subtle: 0 4px 15px rgba(139, 90, 43, 0.3);
+            --shadow-lifted: 0 6px 20px rgba(139, 90, 43, 0.4);
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-serif: 'Georgia', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            background: var(--color-espresso);
+            color: var(--color-oat-milk);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Skip to main content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--color-golden-crema);
+            color: var(--color-espresso);
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Focus styles */
+        button:focus,
+        a:focus,
+        input:focus,
+        select:focus {
+            outline: 2px solid var(--color-golden-crema);
+            outline-offset: 2px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        .store-header {
+            padding: 2rem 0;
+            background: var(--color-espresso);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--color-golden-crema);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: var(--font-sans);
+        }
+        
+        .primary-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(31, 26, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            color: var(--color-foam);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: var(--font-sans);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: rgba(212, 165, 116, 0.4);
+            color: var(--color-golden-crema);
+            transform: translateY(-1px);
+        }
+        
+        .nav-btn.active {
+            background: var(--gradient-button);
+            border-color: var(--color-golden-crema);
+            color: var(--color-steamed-milk);
+        }
+
+        /* Cart icon */
+        .cart-icon {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-button);
+            border: none;
+            color: var(--color-steamed-milk);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .cart-icon:hover {
+            background: var(--gradient-button-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lifted);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        /* Store Hero */
+        .store-hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 90, 43, 0.1) 0%, rgba(160, 82, 45, 0.05) 100%);
+        }
+        
+        .store-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--color-oat-milk);
+        }
+        
+        .store-hero p {
+            font-size: 1.2rem;
+            color: var(--color-foam);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-cappuccino);
+            border-radius: 50%;
+            border-top-color: var(--color-golden-crema);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Fonts with display=swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "Suprimo Coffee Store",
+        "description": "Premium artisanal coffee store with hand-roasted blends",
+        "url": "https://suprimocoffee.co.za/store",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Coffee Products",
+            "itemListElement": [
+                {
+                    "@type": "Product",
+                    "name": "The Goat Blend",
+                    "description": "Full Body, Honey, Fruity, Medium Roast - 1KG Premium Roast",
+                    "image": "https://suprimocoffee.co.za/images/the-goat-1kg.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "275",
+                        "priceCurrency": "ZAR",
+                        "availability": "https://schema.org/InStock"
+                    }
+                },
+                {
+                    "@type": "Product",
+                    "name": "Majestic Blend",
+                    "description": "Low Acidity, Full Bodied, Dark Chocolate After Taste - 1KG Premium Roast",
+                    "image": "https://suprimocoffee.co.za/images/majestic-1kg.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "275",
+                        "priceCurrency": "ZAR",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Non-critical styles loaded after page render -->
+    <link rel="stylesheet" href="store-styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="store-styles.css"></noscript>
+</head>
+<body>
+    <!-- Skip to main content link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Shopping Cart Icon -->
+    <button class="cart-icon" id="cart-toggle" aria-label="Open shopping cart" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        <span class="cart-count" id="cart-count" style="display: none;">0</span>
+    </button>
+    
+    <!-- Shopping Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay" role="dialog" aria-labelledby="cart-title" aria-modal="true" style="display: none;">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h2 class="cart-title" id="cart-title">Your Cart</h2>
+                <button class="cart-close" id="cart-close" aria-label="Close cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <div class="cart-empty" id="cart-empty">
+                    Your cart is empty
+                </div>
+            </div>
+            <div class="cart-footer" id="cart-footer" style="display: none;">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">R0.00</span>
+                </div>
+                <button class="cart-checkout" id="cart-checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="store-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">SUPRIMO</a>
+                <nav class="primary-nav" role="navigation" aria-label="Main navigation">
+                    <a href="index.html" class="nav-btn">Home</a>
+                    <a href="store.html" class="nav-btn active" aria-current="page">Store</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main">
+        <section class="store-hero">
+            <div class="container">
+                <h1>Premium Coffee Store</h1>
+                <p>Hand-roasted artisanal blends delivered at peak freshness. Every bag tells a story of obsession and craft.</p>
+            </div>
+        </section>
+        
+        <section class="products-section">
+            <div class="container">
+                <!-- Product Search & Filter -->
+                <div class="product-controls">
+                    <div class="search-container">
+                        <input type="text" 
+                               id="product-search" 
+                               class="product-search" 
+                               placeholder="Search coffee blends..."
+                               aria-label="Search products">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <select id="size-filter" class="product-filter" aria-label="Filter by size">
+                            <option value="all">All Sizes</option>
+                            <option value="1kg">1KG</option>
+                            <option value="250g">250g</option>
+                        </select>
+                        
+                        <select id="price-filter" class="product-filter" aria-label="Filter by price">
+                            <option value="all">All Prices</option>
+                            <option value="low">Under R100</option>
+                            <option value="mid">R100 - R300</option>
+                        </select>
+                        
+                        <button id="clear-filters" class="clear-filters">Clear Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Filter Results Summary -->
+                <div class="results-summary" id="results-summary" aria-live="polite">
+                    <span id="results-count">4</span> products found
+                </div>
+                
+                <!-- Products Grid -->
+                <div class="products-grid" role="list" aria-label="Coffee products">
+                    <article class="product-card" role="listitem" data-category="1kg" data-price="275">
+                        <div class="product-visual">
+                            <div class="product-badge">21% OFF</div>
+                            <img src="reference images/The-Goat-1.jpeg" 
+                                 alt="The Goat Blend 1KG - Full body coffee with honey and fruity notes" 
+                                 class="product-image"
+                                 loading="lazy"
+                                 width="300"
+                                 height="280">
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-name">The Goat Blend</h3>
+                            <p class="product-profile">Full Body • Honey • Fruity • Medium Roast<br><em>1KG Premium Roast</em></p>
+                            <p class="product-description">Our signature blend sourced from Ethiopian highlands. Notes of honey sweetness with bright fruity undertones that dance on your palate.</p>
+                            <div class="product-price">
+                                <span class="was" aria-label="Original price">R350.00</span>
+                                <span class="current" aria-label="Current price">R275.00</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" 
+                                        data-product="the-goat-1kg"
+                                        aria-label="Add The Goat Blend 1KG to cart">
+                                    <span class="btn-text">Add to Cart</span>
+                                    <span class="loading-spinner" style="display: none;"></span>
+                                </button>
+                                <button class="wishlist-btn" 
+                                        data-product="the-goat-1kg" 
+                                        aria-label="Add The Goat Blend to wishlist">♡</button>
+                            </div>
+                            <div class="product-reviews">
+                                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                                <span class="review-count">(127 reviews)</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card" role="listitem" data-category="1kg" data-price="275">
+                        <div class="product-visual">
+                            <img src="reference images/majestic-1.jpeg" 
+                                 alt="Majestic Blend 1KG - Low acidity coffee with dark chocolate aftertaste" 
+                                 class="product-image"
+                                 loading="lazy"
+                                 width="300"
+                                 height="280">
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-name">Majestic Blend</h3>
+                            <p class="product-profile">Low Acidity • Full Bodied • Dark Chocolate After Taste<br><em>1KG Premium Roast</em></p>
+                            <p class="product-description">Rich Brazilian and Colombian blend with deep chocolate notes. Perfect for those who prefer bold, smooth coffee with minimal acidity.</p>
+                            <div class="product-price">
+                                <span class="current" aria-label="Price">R275.00</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" 
+                                        data-product="majestic-1kg"
+                                        aria-label="Add Majestic Blend 1KG to cart">
+                                    <span class="btn-text">Add to Cart</span>
+                                    <span class="loading-spinner" style="display: none;"></span>
+                                </button>
+                                <button class="wishlist-btn" 
+                                        data-product="majestic-1kg" 
+                                        aria-label="Add Majestic Blend to wishlist">♡</button>
+                            </div>
+                            <div class="product-reviews">
+                                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                                <span class="review-count">(89 reviews)</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card" role="listitem" data-category="250g" data-price="85">
+                        <div class="product-visual">
+                            <img src="reference images/goat-250.jpeg" 
+                                 alt="The Goat 250g taster pack - Perfect size to try our signature blend" 
+                                 class="product-image"
+                                 loading="lazy"
+                                 width="300"
+                                 height="280">
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-name">The Goat - Taster Pack</h3>
+                            <p class="product-profile">Full Body • Honey • Fruity • Medium Roast<br><em>250g Taster Pack</em></p>
+                            <p class="product-description">Perfect size to discover your new favorite. Same exceptional quality as our 1KG blend in a convenient taster pack size.</p>
+                            <div class="product-price">
+                                <span class="current" aria-label="Price">R85.00</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" 
+                                        data-product="the-goat-250g"
+                                        aria-label="Add The Goat 250g to cart">
+                                    <span class="btn-text">Add to Cart</span>
+                                    <span class="loading-spinner" style="display: none;"></span>
+                                </button>
+                                <button class="wishlist-btn" 
+                                        data-product="the-goat-250g" 
+                                        aria-label="Add The Goat 250g to wishlist">♡</button>
+                            </div>
+                            <div class="product-reviews">
+                                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                                <span class="review-count">(67 reviews)</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card" role="listitem" data-category="250g" data-price="85">
+                        <div class="product-visual">
+                            <img src="reference images/MAGESTIC-250.jpeg" 
+                                 alt="Majestic 250g taster pack - Experience rich complexity in perfect size" 
+                                 class="product-image"
+                                 loading="lazy"
+                                 width="300"
+                                 height="280">
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-name">Majestic - Taster Pack</h3>
+                            <p class="product-profile">Low Acidity • Full Bodied • Dark Chocolate After Taste<br><em>250g Taster Pack</em></p>
+                            <p class="product-description">Experience the rich complexity of our Majestic blend in this perfect taster size. Ideal for trying before committing to the full bag.</p>
+                            <div class="product-price">
+                                <span class="current" aria-label="Price">R85.00</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" 
+                                        data-product="majestic-250g"
+                                        aria-label="Add Majestic 250g to cart">
+                                    <span class="btn-text">Add to Cart</span>
+                                    <span class="loading-spinner" style="display: none;"></span>
+                                </button>
+                                <button class="wishlist-btn" 
+                                        data-product="majestic-250g" 
+                                        aria-label="Add Majestic 250g to wishlist">♡</button>
+                            </div>
+                            <div class="product-reviews">
+                                <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                                <span class="review-count">(45 reviews)</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- No results message -->
+                <div class="no-results" id="no-results" style="display: none;">
+                    <h3>No products match your criteria</h3>
+                    <p>Try adjusting your filters or search terms.</p>
+                    <button class="clear-filters-btn" onclick="clearAllFilters()">Clear All Filters</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Error boundary for JavaScript -->
+    <div id="error-boundary" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: #ff4757; color: white; padding: 1rem; text-align: center; z-index: 10000;">
+        <p>Something went wrong. Please refresh the page or contact support.</p>
+        <button onclick="location.reload()" style="margin-left: 1rem; padding: 0.5rem 1rem; background: white; color: #ff4757; border: none; border-radius: 4px; cursor: pointer;">Refresh Page</button>
+    </div>
+    
+    <!-- Success notification -->
+    <div id="success-notification" style="display: none; position: fixed; top: 2rem; right: 2rem; background: #4CAF50; color: white; padding: 1rem; border-radius: 4px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <p id="success-message">Product added to cart!</p>
+    </div>
+    
+    <!-- Deferred scripts for performance -->
+    <script defer src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+    
+    <!-- Optimized store JavaScript -->
+    <script>
+        'use strict';
+        
+        // Error handling
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('JavaScript error:', { msg, url, lineNo, columnNo, error });
+            document.getElementById('error-boundary').style.display = 'block';
+            return false;
+        };
+        
+        // Success notification
+        function showSuccess(message) {
+            const notification = document.getElementById('success-notification');
+            const messageEl = document.getElementById('success-message');
+            messageEl.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Enhanced cart and product functionality
+        class StoreManager {
+            constructor() {
+                this.cart = this.loadCart();
+                this.wishlist = this.loadWishlist();
+                this.initializeElements();
+                this.updateCartUI();
+                this.bindEvents();
+                this.initializeFilters();
+            }
+            
+            loadCart() {
+                try {
+                    return JSON.parse(localStorage.getItem('suprimo-cart')) || [];
+                } catch (e) {
+                    console.error('Error loading cart:', e);
+                    return [];
+                }
+            }
+            
+            loadWishlist() {
+                try {
+                    return JSON.parse(localStorage.getItem('suprimo-wishlist')) || [];
+                } catch (e) {
+                    console.error('Error loading wishlist:', e);
+                    return [];
+                }
+            }
+            
+            saveCart() {
+                try {
+                    localStorage.setItem('suprimo-cart', JSON.stringify(this.cart));
+                } catch (e) {
+                    console.error('Error saving cart:', e);
+                }
+            }
+            
+            saveWishlist() {
+                try {
+                    localStorage.setItem('suprimo-wishlist', JSON.stringify(this.wishlist));
+                } catch (e) {
+                    console.error('Error saving wishlist:', e);
+                }
+            }
+            
+            initializeElements() {
+                this.elements = {
+                    // Cart elements
+                    cartOverlay: document.getElementById('cart-overlay'),
+                    cartToggle: document.getElementById('cart-toggle'),
+                    cartClose: document.getElementById('cart-close'),
+                    cartItems: document.getElementById('cart-items'),
+                    cartEmpty: document.getElementById('cart-empty'),
+                    cartFooter: document.getElementById('cart-footer'),
+                    cartCount: document.getElementById('cart-count'),
+                    cartTotal: document.getElementById('cart-total'),
+                    cartCheckout: document.getElementById('cart-checkout'),
+                    
+                    // Filter elements
+                    productSearch: document.getElementById('product-search'),
+                    sizeFilter: document.getElementById('size-filter'),
+                    priceFilter: document.getElementById('price-filter'),
+                    clearFilters: document.getElementById('clear-filters'),
+                    resultsCount: document.getElementById('results-count'),
+                    noResults: document.getElementById('no-results'),
+                    
+                    // Product elements
+                    productCards: document.querySelectorAll('.product-card')
+                };
+            }
+            
+            bindEvents() {
+                // Cart events
+                this.elements.cartToggle?.addEventListener('click', () => this.toggleCart());
+                this.elements.cartClose?.addEventListener('click', () => this.closeCart());
+                this.elements.cartOverlay?.addEventListener('click', (e) => {
+                    if (e.target === this.elements.cartOverlay) this.closeCart();
+                });
+                this.elements.cartCheckout?.addEventListener('click', () => this.checkout());
+                
+                // Product events
+                document.addEventListener('click', (e) => {
+                    if (e.target.matches('.add-to-cart-btn, .add-to-cart-btn *')) {
+                        this.handleAddToCart(e);
+                    }
+                    
+                    if (e.target.matches('.wishlist-btn')) {
+                        this.handleWishlist(e);
+                    }
+                });
+                
+                // Filter events
+                this.elements.productSearch?.addEventListener('input', () => this.filterProducts());
+                this.elements.sizeFilter?.addEventListener('change', () => this.filterProducts());
+                this.elements.priceFilter?.addEventListener('change', () => this.filterProducts());
+                this.elements.clearFilters?.addEventListener('click', () => this.clearAllFilters());
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isCartOpen()) {
+                        this.closeCart();
+                    }
+                });
+            }
+            
+            initializeFilters() {
+                // Initialize wishlist state from localStorage
+                this.wishlist.forEach(productId => {
+                    const wishlistBtn = document.querySelector(`[data-product="${productId}"].wishlist-btn`);
+                    if (wishlistBtn) {
+                        wishlistBtn.classList.add('active');
+                        wishlistBtn.textContent = '♥';
+                    }
+                });
+                
+                this.updateResultsCount();
+            }
+            
+            handleAddToCart(e) {
+                e.preventDefault();
+                const button = e.target.closest('.add-to-cart-btn');
+                const productId = button.getAttribute('data-product');
+                
+                // Show loading state
+                this.setButtonLoading(button, true);
+                
+                // Simulate network delay for better UX
+                setTimeout(() => {
+                    this.addToCart(productId);
+                    this.setButtonLoading(button, false);
+                    showSuccess('Product added to cart!');
+                }, 300);
+            }
+            
+            handleWishlist(e) {
+                const button = e.target;
+                const productId = button.getAttribute('data-product');
+                const isActive = button.classList.contains('active');
+                
+                if (isActive) {
+                    this.removeFromWishlist(productId);
+                    button.classList.remove('active');
+                    button.textContent = '♡';
+                    showSuccess('Removed from wishlist');
+                } else {
+                    this.addToWishlist(productId);
+                    button.classList.add('active');
+                    button.textContent = '♥';
+                    showSuccess('Added to wishlist');
+                }
+            }
+            
+            setButtonLoading(button, loading) {
+                const text = button.querySelector('.btn-text');
+                const spinner = button.querySelector('.loading-spinner');
+                
+                if (loading) {
+                    text.style.display = 'none';
+                    spinner.style.display = 'inline-block';
+                    button.disabled = true;
+                } else {
+                    text.style.display = 'inline';
+                    spinner.style.display = 'none';
+                    button.disabled = false;
+                }
+            }
+            
+            addToCart(productId) {
+                const products = {
+                    'the-goat-1kg': { name: 'The Goat Blend', price: 275, originalPrice: 350, image: 'reference images/The-Goat-1.jpeg', size: '1KG' },
+                    'majestic-1kg': { name: 'Majestic Blend', price: 275, image: 'reference images/majestic-1.jpeg', size: '1KG' },
+                    'the-goat-250g': { name: 'The Goat', price: 85, image: 'reference images/goat-250.jpeg', size: '250g' },
+                    'majestic-250g': { name: 'Majestic', price: 85, image: 'reference images/MAGESTIC-250.jpeg', size: '250g' }
+                };
+                
+                const product = products[productId];
+                if (!product) return;
+                
+                const existingItem = this.cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    this.cart.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        originalPrice: product.originalPrice,
+                        image: product.image,
+                        size: product.size,
+                        quantity: 1
+                    });
+                }
+                
+                this.saveCart();
+                this.updateCartUI();
+            }
+            
+            addToWishlist(productId) {
+                if (!this.wishlist.includes(productId)) {
+                    this.wishlist.push(productId);
+                    this.saveWishlist();
+                }
+            }
+            
+            removeFromWishlist(productId) {
+                this.wishlist = this.wishlist.filter(id => id !== productId);
+                this.saveWishlist();
+            }
+            
+            updateQuantity(productId, change) {
+                const item = this.cart.find(item => item.id === productId);
+                if (!item) return;
+                
+                item.quantity += change;
+                
+                if (item.quantity <= 0) {
+                    this.cart = this.cart.filter(item => item.id !== productId);
+                }
+                
+                this.saveCart();
+                this.updateCartUI();
+            }
+            
+            updateCartUI() {
+                const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+                const totalPrice = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                if (totalItems > 0) {
+                    this.elements.cartCount.textContent = totalItems;
+                    this.elements.cartCount.style.display = 'flex';
+                    this.elements.cartEmpty.style.display = 'none';
+                    this.elements.cartFooter.style.display = 'block';
+                    this.elements.cartTotal.textContent = `R${totalPrice.toFixed(2)}`;
+                } else {
+                    this.elements.cartCount.style.display = 'none';
+                    this.elements.cartEmpty.style.display = 'block';
+                    this.elements.cartFooter.style.display = 'none';
+                }
+                
+                this.renderCartItems();
+            }
+            
+            renderCartItems() {
+                if (this.cart.length === 0) return;
+                
+                this.elements.cartItems.innerHTML = this.cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image" loading="lazy">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name} (${item.size})</div>
+                            <div class="cart-item-price">R${item.price.toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="storeManager.updateQuantity('${item.id}', -1)" aria-label="Decrease quantity">-</button>
+                                <span aria-label="Quantity">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="storeManager.updateQuantity('${item.id}', 1)" aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            toggleCart() {
+                const isOpen = this.isCartOpen();
+                this.elements.cartOverlay.style.display = isOpen ? 'none' : 'flex';
+                this.elements.cartToggle.setAttribute('aria-expanded', !isOpen);
+                
+                if (!isOpen) {
+                    setTimeout(() => {
+                        this.elements.cartOverlay.style.opacity = '1';
+                    }, 10);
+                }
+            }
+            
+            closeCart() {
+                this.elements.cartOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    this.elements.cartOverlay.style.display = 'none';
+                }, 300);
+                this.elements.cartToggle.setAttribute('aria-expanded', 'false');
+            }
+            
+            isCartOpen() {
+                return this.elements.cartOverlay.style.display === 'flex';
+            }
+            
+            checkout() {
+                if (this.cart.length === 0) return;
+                
+                alert('Redirecting to secure checkout... (This would integrate with Shopify/PayFast/etc.)');
+                console.log('Checkout with items:', this.cart);
+            }
+            
+            filterProducts() {
+                const searchTerm = this.elements.productSearch.value.toLowerCase();
+                const sizeValue = this.elements.sizeFilter.value;
+                const priceValue = this.elements.priceFilter.value;
+                
+                let visibleCount = 0;
+                
+                this.elements.productCards.forEach(card => {
+                    const productName = card.querySelector('.product-name').textContent.toLowerCase();
+                    const productProfile = card.querySelector('.product-profile').textContent.toLowerCase();
+                    const productCategory = card.getAttribute('data-category');
+                    const productPrice = parseInt(card.getAttribute('data-price'));
+                    
+                    // Search filter
+                    const matchesSearch = searchTerm === '' || 
+                        productName.includes(searchTerm) || 
+                        productProfile.includes(searchTerm);
+                    
+                    // Size filter
+                    const matchesSize = sizeValue === 'all' || 
+                        (sizeValue === '1kg' && productCategory === '1kg') ||
+                        (sizeValue === '250g' && productCategory === '250g');
+                    
+                    // Price filter
+                    const matchesPrice = priceValue === 'all' ||
+                        (priceValue === 'low' && productPrice < 100) ||
+                        (priceValue === 'mid' && productPrice >= 100 && productPrice <= 300);
+                    
+                    const shouldShow = matchesSearch && matchesSize && matchesPrice;
+                    
+                    if (shouldShow) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                this.updateResultsCount(visibleCount);
+                this.toggleNoResults(visibleCount === 0);
+            }
+            
+            updateResultsCount(count) {
+                const total = count !== undefined ? count : this.elements.productCards.length;
+                this.elements.resultsCount.textContent = total;
+            }
+            
+            toggleNoResults(show) {
+                this.elements.noResults.style.display = show ? 'block' : 'none';
+            }
+            
+            clearAllFilters() {
+                this.elements.productSearch.value = '';
+                this.elements.sizeFilter.value = 'all';
+                this.elements.priceFilter.value = 'all';
+                this.filterProducts();
+            }
+        }
+        
+        // Global function for clearing filters (called from no-results section)
+        window.clearAllFilters = function() {
+            storeManager.clearAllFilters();
+        };
+        
+        // Initialize when DOM is ready
+        let storeManager;
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+        function init() {
+            try {
+                storeManager = new StoreManager();
+                
+                // Performance optimizations
+                if ('IntersectionObserver' in window) {
+                    const images = document.querySelectorAll('img[loading="lazy"]');
+                    const imageObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                img.src = img.src;
+                                imageObserver.unobserve(img);
+                            }
+                        });
+                    });
+                    
+                    images.forEach(img => imageObserver.observe(img));
+                }
+                
+                // Service Worker registration for PWA capabilities
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js').catch(console.error);
+                }
+                
+            } catch (error) {
+                console.error('Initialization error:', error);
+                document.getElementById('error-boundary').style.display = 'block';
+            }
+        }
+        
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if ('performance' in window) {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('Store page load time:', perfData.loadEventEnd - perfData.fetchStart);
+                }
+            }, 0);
+        });
+        
+        // Reduced motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('scroll-behavior', 'auto');
+        }
+    </script>
+</body>
+</html>

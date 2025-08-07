@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(npx serve:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(git --version)",
+      "Bash(docker:*)",
+      "Bash(java:*)"
+    ],
+    "deny": []
+  }
+}

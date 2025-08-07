@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web500za Design System Preview</title>
+    <link rel="stylesheet" href="src/styles/fonts.css">
+    <link rel="stylesheet" href="src/styles/design-system.css">
+    <style>
+        .preview-section {
+            padding: var(--space-3xl) 0;
+            border-bottom: 1px solid var(--border-default);
+        }
+        
+        .preview-section:last-child {
+            border-bottom: none;
+        }
+        
+        .preview-title {
+            font-size: 1.875rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xl);
+            color: var(--text-primary);
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .color-swatch {
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            border: 1px solid var(--border-default);
+            transition: var(--transition-all);
+        }
+        
+        .color-swatch:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .color-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-md);
+        }
+        
+        .button-grid {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            margin-top: var(--space-xl);
+        }
+        
+        .typography-samples {
+            margin-top: var(--space-xl);
+            space-y: var(--space-lg);
+        }
+        
+        .typography-samples > * {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            z-index: var(--z-fixed);
+        }
+        
+        .spacing-demo {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: flex-end;
+            margin-top: var(--space-xl);
+        }
+        
+        .spacing-box {
+            background: var(--brand-primary);
+            opacity: 0.8;
+            border-radius: var(--radius-sm);
+        }
+        
+        .component-preview {
+            margin-top: var(--space-2xl);
+        }
+        
+        .mock-section {
+            background: var(--bg-tertiary);
+            padding: var(--space-3xl);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-2xl);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="btn btn-secondary" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- Hero Preview - Zen Browser Style -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="text-hero-lead">welcome to</h2>
+                <h1 class="text-hero">
+                    professional <span class="text-hero-accent">web design</span>
+                </h1>
+                <p class="text-hero-tagline">
+                    Bringing Fortune 500 quality, security, and reliability to local businesses. 
+                    Your success online starts with exceptional design.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-secondary">View Portfolio</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Colors -->
+        <section class="preview-section">
+            <h2 class="preview-title">Color Palette</h2>
+            
+            <h3 class="text-card-title">Brand Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--brand-primary);"></div>
+                    <p class="text-body">Brand Primary</p>
+                    <p class="text-caption">--brand-primary</p>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--brand-accent);"></div>
+                    <p class="text-body">Brand Accent</p>
+                    <p class="text-caption">--brand-accent</p>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--brand-accent-hover);"></div>
+                    <p class="text-body">Accent Hover</p>
+                    <p class="text-caption">--brand-accent-hover</p>
+                </div>
+            </div>
+
+            <h3 class="text-card-title" style="margin-top: var(--space-2xl);">Background Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--bg-primary); border: 1px solid var(--border-default);"></div>
+                    <p class="text-body">Primary Background</p>
+                    <p class="text-caption">--bg-primary</p>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--bg-secondary); border: 1px solid var(--border-default);"></div>
+                    <p class="text-body">Secondary Background</p>
+                    <p class="text-caption">--bg-secondary</p>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-preview" style="background: var(--bg-tertiary); border: 1px solid var(--border-default);"></div>
+                    <p class="text-body">Tertiary Background</p>
+                    <p class="text-caption">--bg-tertiary</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="preview-section">
+            <h2 class="preview-title">Typography Hierarchy</h2>
+            <div class="typography-samples">
+                <h2 class="text-hero-lead">Hero Lead Text - "welcome to" (28px)</h2>
+                <h1 class="text-hero">Main Hero Text (64px)</h1>
+                <h1 class="text-hero">With <span class="text-hero-accent">accent color</span></h1>
+                <p class="text-hero-tagline">Hero tagline text for supporting descriptions under the main heading.</p>
+                <h2 class="text-section-title">Section Title (40px)</h2>
+                <h3 class="text-card-title">Card Title (20px)</h3>
+                <p class="text-body-lg">Large body text for important introductions and key messages.</p>
+                <p class="text-body">Regular body text for standard content and descriptions.</p>
+                <p class="text-caption">Caption text for labels and secondary information.</p>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="preview-section">
+            <h2 class="preview-title">Buttons</h2>
+            <div class="button-grid">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-accent">Accent Button (CTA)</button>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="preview-section">
+            <h2 class="preview-title">Cards</h2>
+            <div class="feature-grid">
+                <div class="card">
+                    <h3 class="text-card-title">Feature Card</h3>
+                    <p class="text-body text-secondary" style="margin-top: var(--space-md);">
+                        This is how a feature card looks with your content. Hover to see the subtle lift effect.
+                    </p>
+                    <button class="btn btn-primary" style="margin-top: var(--space-lg);">Learn More</button>
+                </div>
+                <div class="card">
+                    <span class="badge badge-accent">New</span>
+                    <h3 class="text-card-title" style="margin-top: var(--space-sm);">Card with Badge</h3>
+                    <p class="text-body text-secondary" style="margin-top: var(--space-md);">
+                        Cards can include badges for highlighting special features or status.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3 class="text-card-title">Hover Effect</h3>
+                    <p class="text-body text-secondary" style="margin-top: var(--space-md);">
+                        All cards have a gentle hover effect that lifts them slightly and increases the shadow.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spacing -->
+        <section class="preview-section">
+            <h2 class="preview-title">Spacing System</h2>
+            <div class="spacing-demo">
+                <div class="spacing-box" style="width: var(--space-xs); height: var(--space-xs);"></div>
+                <div class="spacing-box" style="width: var(--space-sm); height: var(--space-sm);"></div>
+                <div class="spacing-box" style="width: var(--space-md); height: var(--space-md);"></div>
+                <div class="spacing-box" style="width: var(--space-lg); height: var(--space-lg);"></div>
+                <div class="spacing-box" style="width: var(--space-xl); height: var(--space-xl);"></div>
+                <div class="spacing-box" style="width: var(--space-2xl); height: var(--space-2xl);"></div>
+                <div class="spacing-box" style="width: var(--space-3xl); height: var(--space-3xl);"></div>
+            </div>
+            <div style="display: flex; gap: var(--space-xl); margin-top: var(--space-md); font-size: 0.875rem;">
+                <span>xs (4px)</span>
+                <span>sm (8px)</span>
+                <span>md (16px)</span>
+                <span>lg (24px)</span>
+                <span>xl (32px)</span>
+                <span>2xl (48px)</span>
+                <span>3xl (64px)</span>
+            </div>
+        </section>
+
+        <!-- Mock Section -->
+        <section class="preview-section">
+            <h2 class="preview-title">Component Examples</h2>
+            
+            <div class="mock-section" style="text-align: center;">
+                <h2 class="text-section-title">Productivity at its best</h2>
+                <p class="text-body-lg" style="margin-top: var(--space-lg); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    See how the design system components work together to create beautiful, cohesive layouts with generous spacing.
+                </p>
+                
+                <div class="feature-grid" style="margin-top: var(--space-2xl);">
+                    <div class="card">
+                        <h3 class="text-card-title">Fast & Secure</h3>
+                        <p class="text-body" style="margin-top: var(--space-md);">
+                            Built with performance and security as top priorities. Your site will load fast and stay protected.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-card-title">Mobile First</h3>
+                        <p class="text-body" style="margin-top: var(--space-md);">
+                            Every design starts with mobile users in mind, ensuring a perfect experience on any device.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-card-title">SEO Optimized</h3>
+                        <p class="text-body" style="margin-top: var(--space-md);">
+                            Clean code and proper structure means search engines will love your site as much as your visitors do.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark Mode';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light Mode';
+            }
+        }
+    </script>
+</body>
+</html>
