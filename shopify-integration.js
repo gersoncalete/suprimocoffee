@@ -3,8 +3,8 @@
 
 // Initialize Shopify client
 const shopifyConfig = {
-    domain: 'qjw0s1-1s.myshopify.com', // Replace with your Shopify domain
-    storefrontAccessToken: 'bce2e01a1cc90ea03378a7d13b4bd6cb', // Replace with your token
+    domain: process.env.SHOPIFY_DOMAIN || 'qjw0s1-1s.myshopify.com', // Replace with your Shopify domain
+    storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN || 'bce2e01a1cc90ea03378a7d13b4bd6cb', // Replace with your token
 };
 
 // Product IDs - Replace these with your actual Shopify product IDs

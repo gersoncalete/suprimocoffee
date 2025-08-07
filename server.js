@@ -47,8 +47,8 @@ const server = http.createServer((req, res) => {
     });
 });
 
-const PORT = 8000;
-server.listen(PORT, '127.0.0.1', () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
     console.log('Press Ctrl+C to stop');
 });

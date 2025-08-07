@@ -1,0 +1,16 @@
+{
+  "name": "suprimo-coffee",
+  "version": "1.0.0",
+  "description": "Suprimo Coffee - Premium Ethiopian Coffee Experience",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": ["coffee", "ethiopian", "premium", "ecommerce"],
+  "author": "Suprimo Coffee",
+  "license": "MIT"
+}
